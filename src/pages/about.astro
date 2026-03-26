@@ -95,13 +95,13 @@ import { seo, aboutPage } from '@/data/strings';
   <section class="certs bg-dark">
     <div class="container">
       <div class="section-header section-header--centered">
-        <p class="section-eyebrow" style="color: #f0a500">{aboutPage.certifications.eyebrow}</p>
-        <h2 class="section-title" style="color: white" set:html={aboutPage.certifications.title} />
+        <p class="section-eyebrow">{aboutPage.certifications.eyebrow}</p>
+        <h2 class="section-title" set:html={aboutPage.certifications.title} />
       </div>
       <ul class="certs__list" role="list">
         {company.certifications.map(cert => (
           <li class="certs__item">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f0a500" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
             {cert}
           </li>
         ))}

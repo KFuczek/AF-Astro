@@ -18,7 +18,7 @@ body {
   font-family: $font-primary;
   font-size: $font-size-base;
   color: $color-text;
-  background-color: $color-white;
+  background-color: $color-bg;
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
 }
@@ -106,7 +106,7 @@ section {
       background-color: $color-accent-dark;
       border-color: $color-accent-dark;
       transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba($color-accent, 0.35);
+      box-shadow: 0 6px 20px rgba($color-accent, 0.3);
     }
   }
 

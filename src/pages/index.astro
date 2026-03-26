@@ -94,8 +94,8 @@ import { seo, homePage } from '@/data/strings';
   <section class="testimonials bg-dark">
     <div class="container">
       <div class="section-header section-header--centered">
-        <p class="section-eyebrow" style="color: #f0a500">{homePage.testimonials.eyebrow}</p>
-        <h2 class="section-title" style="color: white" set:html={homePage.testimonials.title} />
+        <p class="section-eyebrow">{homePage.testimonials.eyebrow}</p>
+        <h2 class="section-title" set:html={homePage.testimonials.title} />
       </div>
       <div class="testimonials__grid">
         {homePage.testimonials.items.map(t => (

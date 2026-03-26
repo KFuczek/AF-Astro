@@ -213,6 +213,13 @@
 
 // ── Certifications ─────────────────────────────────────────────────────────────
 .certs {
+  .section-eyebrow { color: $color-accent; }
+
+  .section-title {
+    color: $color-white;
+    span { color: $color-accent; }
+  }
+
   &__list {
     display: flex;
     flex-direction: column;
@@ -226,6 +233,8 @@
     align-items: center;
     gap: $spacing-sm;
     color: rgba($color-white, 0.8);
+
+    svg { color: $color-accent; }
     font-size: $font-size-base;
     background-color: rgba($color-white, 0.04);
     border: 1px solid rgba($color-white, 0.08);

@@ -1,15 +1,42 @@
-// ─── Colors ─────────────────────────────────────────────────────────────────
-$color-dark:            #1c1c1c;
-$color-dark-secondary:  #2a2a2a;
-$color-dark-tertiary:   #333333;
-$color-accent:          #f0a500;
-$color-accent-dark:     #d4920a;
-$color-accent-light:    #fbbf24;
-$color-white:           #ffffff;
-$color-light:           #f8f7f5;
-$color-gray:            #6b6b6b;
-$color-gray-light:      #e0dedd;
-$color-text:            #2a2a2a;
+// ─── Color system — 60 / 30 / 10 ─────────────────────────────────────────────
+//
+//  60% dominant  →  $color-bg / $color-light / $color-white  (off-white surfaces)
+//  30% secondary →  $color-dark / $color-dark-secondary       (deep slate navy)
+//  10% accent    →  $color-accent / $color-accent-dark        (eco green)
+//
+// Palette chosen for: energy · eco-friendly · modern engineering
+// All colour pairs meet WCAG AA contrast.
+
+// ── Surfaces ──────────────────────────────────────────────────────────────────
+$color-bg:              #F8FAFC;   // body background (60% dominant)
+$color-light:           #F1F5F9;   // light section / card tint
+$color-white:           #FFFFFF;   // pure white cards / inputs
+$color-card:            #FFFFFF;
+
+// ── Brand secondary — deep slate navy (30%) ────────────────────────────────
+$color-dark:            #1E293B;   // navbar, footer, hero, dark sections
+$color-dark-secondary:  #0F172A;   // stats bar, deepest backgrounds
+$color-dark-tertiary:   #334155;   // subtle dark dividers / hover states
+
+// ── Accent — eco green (10%) ──────────────────────────────────────────────
+$color-accent:          #22C55E;   // primary CTA, highlights, icons
+$color-accent-dark:     #16A34A;   // hover / focus on accent elements
+$color-accent-light:    #4ADE80;   // light accent tints
+
+// ── Text ──────────────────────────────────────────────────────────────────────
+$color-text:            #0F172A;   // primary body text
+$color-gray:            #475569;   // secondary / supporting text
+$color-muted:           #94A3B8;   // placeholders, captions, timestamps
+
+// ── Borders / UI chrome ───────────────────────────────────────────────────────
+$color-gray-light:      #E2E8F0;   // borders, dividers, input outlines
+
+// ── Semantic ──────────────────────────────────────────────────────────────────
+$color-error:           #DC2626;   // form validation errors
+$color-success-bg:      #DCFCE7;   // form success background
+$color-success-border:  #BBF7D0;   // form success border
+$color-success-text:    #14532D;   // form success text
+$color-success-icon:    #16A34A;   // form success icon
 
 // ─── Typography ──────────────────────────────────────────────────────────────
 $font-primary:    'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
@@ -45,6 +72,6 @@ $transition-base:   0.2s ease;
 $transition-slow:   0.3s ease;
 $container-max:     1200px;
 $container-padding: 1.5rem;
-$shadow-sm:         0 2px 8px rgba(0, 0, 0, 0.08);
-$shadow-md:         0 6px 20px rgba(0, 0, 0, 0.1);
-$shadow-lg:         0 12px 36px rgba(0, 0, 0, 0.14);
+$shadow-sm:         0 2px 8px rgba(0, 0, 0, 0.06);
+$shadow-md:         0 6px 20px rgba(0, 0, 0, 0.08);
+$shadow-lg:         0 12px 36px rgba(0, 0, 0, 0.12);

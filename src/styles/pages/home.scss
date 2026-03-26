@@ -160,7 +160,12 @@
 .testimonials {
   padding-block: $spacing-2xl;
 
-  .section-title span { color: $color-accent; }
+  .section-eyebrow { color: $color-accent; }
+
+  .section-title {
+    color: $color-white;
+    span { color: $color-accent; }
+  }
 
   &__grid {
     display: grid;
