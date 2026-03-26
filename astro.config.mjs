@@ -3,12 +3,9 @@ import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://www.firma.pl',
+  site: "https://KFuczek.github.io",
+  base: "/AF-Astro",
   output: 'static',
-
-  // Generate flat .html files (about.html) instead of directories (about/index.html).
-  // Any basic HTTP server (Apache, Nginx, S3, GitHub Pages) can serve these directly
-  // without needing to configure directory index rules.
   build: {
     format: 'file',
   },
