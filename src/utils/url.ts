@@ -23,7 +23,9 @@ export function url(path: string): string {
     return path;
   }
   // '/' → bare base URL
-  if (path === '/') return base;
-  // '/about' → '<base>about'  (BASE_URL ends with '/', strip leading '/')
+  if (path === '/') {
+    return base;
+  }
+
   return `${base}${path}`;
 }
