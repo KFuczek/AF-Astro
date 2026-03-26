@@ -3,90 +3,23 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import Hero from '@/components/Hero/Hero.astro';
 import ServiceCard from '@/components/ServiceCard/ServiceCard.astro';
 import '@/styles/pages/home.scss';
-
-const stats = [
-  { value: '25+',  label: 'Years of Experience' },
-  { value: '500+', label: 'Projects Completed' },
-  { value: '98%',  label: 'Client Satisfaction' },
-  { value: '50+',  label: 'Expert Professionals' },
-];
-
-const benefits = [
-  {
-    icon: '🏆',
-    title: 'Proven Track Record',
-    text: 'Over two decades of delivering complex residential, commercial, and industrial projects on time and within budget.',
-  },
-  {
-    icon: '🔒',
-    title: 'Quality Guaranteed',
-    text: 'ISO 9001-certified processes and rigorous quality control at every stage — from groundwork to final finishing.',
-  },
-  {
-    icon: '📅',
-    title: 'Deadlines We Keep',
-    text: 'We understand that delays cost money. Our project management methodology ensures we hit every milestone.',
-  },
-  {
-    icon: '🛡️',
-    title: 'Fully Licensed & Insured',
-    text: 'All works are carried out by certified professionals. Full liability insurance and compliance with Polish building codes.',
-  },
-];
-
-const featuredServices = [
-  {
-    icon: '🏗️',
-    title: 'General Construction',
-    description: 'From foundations to rooftops — we manage complete new-build projects for residential, commercial, and industrial clients.',
-  },
-  {
-    icon: '🔨',
-    title: 'Renovations & Refurbishments',
-    description: 'Breathing new life into existing structures with minimal disruption, maximum quality, and a clear timeline.',
-  },
-  {
-    icon: '🪟',
-    title: 'Interior Finishing',
-    description: 'Expert plastering, flooring, tiling, painting, and fitted joinery that turns a shell into a beautiful, functional space.',
-  },
-];
-
-const testimonials = [
-  {
-    quote: 'ArchiForce completely transformed our office building in under four months. Professional team, on time, on budget — exactly what you need from a construction partner.',
-    author: 'Marek Kowalski',
-    role: 'CEO, Nova Logistics Sp. z o.o.',
-  },
-  {
-    quote: 'We hired ArchiForce for a full home renovation and couldn\'t be more pleased. Every detail was handled with care, and the team was communicative throughout the entire process.',
-    author: 'Anna Wiśniewska',
-    role: 'Homeowner, Warsaw Mokotów',
-  },
-  {
-    quote: 'As a property developer, I\'ve worked with many firms. ArchiForce consistently stands out for their attention to detail, safety standards, and reliability. They are our go-to contractor.',
-    author: 'Piotr Dąbrowski',
-    role: 'Managing Director, Varsovia Development',
-  },
-];
+import { company } from '@/data/config';
+import { seo, homePage } from '@/data/strings';
 ---
 
-<BaseLayout
-  title="Home"
-  description="ArchiForce Construction – Warsaw's trusted construction partner since 1998. General construction, renovations, roofing, electrical and more. Get a free quote today."
->
+<BaseLayout title={seo.pages.home.title} description={seo.pages.home.description}>
   <Hero
-    title="Reliable Construction Services <span>You Can Trust</span>"
-    subtitle="For over 25 years, ArchiForce has been delivering exceptional construction projects across Poland. Quality craftsmanship, transparent communication, and results that stand the test of time."
-    ctaText="Get a Free Quote"
-    ctaLink="/contact"
-    secondaryCta={{ text: 'View Our Projects', href: '/projects' }}
+    title={homePage.hero.title}
+    subtitle={homePage.hero.subtitle}
+    ctaText={homePage.hero.ctaText}
+    ctaLink={homePage.hero.ctaLink}
+    secondaryCta={{ text: homePage.hero.secondaryCtaText, href: homePage.hero.secondaryCtaHref }}
     size="large"
   />
 
   <section class="stats" aria-label="Company statistics">
     <div class="container stats__grid">
-      {stats.map(stat => (
+      {homePage.stats.map(stat => (
         <div class="stats__item">
           <span class="stats__value">{stat.value}</span>
           <span class="stats__label">{stat.label}</span>
@@ -98,45 +31,23 @@ const testimonials = [
   <section class="about-intro bg-light">
     <div class="container about-intro__inner">
       <div class="about-intro__text">
-        <p class="section-eyebrow">Who We Are</p>
-        <h2 class="section-title">Warsaw's Most <span>Trusted</span> Construction Company</h2>
-        <p class="about-intro__body">
-          Founded in 1998, ArchiForce Construction has grown from a small local contractor into one of Warsaw's leading full-service construction firms. We serve private homeowners, property developers, and large-scale commercial clients — bringing the same commitment to quality and safety regardless of project size.
-        </p>
-        <p class="about-intro__body">
-          Every project is assigned a dedicated project manager, giving you a single point of contact from the first consultation through to the final handover. We believe great construction starts with great communication.
-        </p>
-        <a href="/about" class="btn btn--dark">Learn About Us</a>
+        <p class="section-eyebrow">{homePage.aboutIntro.eyebrow}</p>
+        <h2 class="section-title" set:html={homePage.aboutIntro.title} />
+        {homePage.aboutIntro.body.map(paragraph => (
+          <p class="about-intro__body">{paragraph}</p>
+        ))}
+        <a href={homePage.aboutIntro.ctaHref} class="btn btn--dark">{homePage.aboutIntro.ctaText}</a>
       </div>
       <div class="about-intro__highlights" aria-label="Key strengths">
-        <div class="about-intro__highlight">
-          <span class="about-intro__highlight-icon">✅</span>
-          <div>
-            <strong>Certified &amp; Insured</strong>
-            <p>ISO 9001 quality management. Full liability coverage on every site.</p>
+        {homePage.aboutIntro.highlights.map(h => (
+          <div class="about-intro__highlight">
+            <span class="about-intro__highlight-icon">{h.icon}</span>
+            <div>
+              <strong>{h.title}</strong>
+              <p>{h.text}</p>
+            </div>
           </div>
-        </div>
-        <div class="about-intro__highlight">
-          <span class="about-intro__highlight-icon">✅</span>
-          <div>
-            <strong>Transparent Pricing</strong>
-            <p>Detailed quotes with no hidden costs. Fixed-price contracts available.</p>
-          </div>
-        </div>
-        <div class="about-intro__highlight">
-          <span class="about-intro__highlight-icon">✅</span>
-          <div>
-            <strong>End-to-End Service</strong>
-            <p>Design consultation, permits, construction, and finishing — all under one roof.</p>
-          </div>
-        </div>
-        <div class="about-intro__highlight">
-          <span class="about-intro__highlight-icon">✅</span>
-          <div>
-            <strong>Post-Completion Support</strong>
-            <p>12-month defect liability period and a dedicated aftercare team.</p>
-          </div>
-        </div>
+        ))}
       </div>
     </div>
   </section>
@@ -144,12 +55,12 @@ const testimonials = [
   <section class="benefits">
     <div class="container">
       <div class="section-header section-header--centered">
-        <p class="section-eyebrow">Why Choose Us</p>
-        <h2 class="section-title">Built on <span>Expertise</span> &amp; Integrity</h2>
-        <p class="section-subtitle">Four pillars that have defined ArchiForce for over two decades.</p>
+        <p class="section-eyebrow">{homePage.benefits.eyebrow}</p>
+        <h2 class="section-title" set:html={homePage.benefits.title} />
+        <p class="section-subtitle">{homePage.benefits.subtitle}</p>
       </div>
       <div class="benefits__grid">
-        {benefits.map(b => (
+        {homePage.benefits.items.map(b => (
           <div class="benefit-card">
             <span class="benefit-card__icon" aria-hidden="true">{b.icon}</span>
             <h3 class="benefit-card__title">{b.title}</h3>
@@ -163,17 +74,19 @@ const testimonials = [
   <section class="services-preview bg-light">
     <div class="container">
       <div class="section-header section-header--centered">
-        <p class="section-eyebrow">What We Do</p>
-        <h2 class="section-title">Our Core <span>Services</span></h2>
-        <p class="section-subtitle">From structural groundwork to decorative finishes, we cover the full construction lifecycle.</p>
+        <p class="section-eyebrow">{homePage.servicesPreview.eyebrow}</p>
+        <h2 class="section-title" set:html={homePage.servicesPreview.title} />
+        <p class="section-subtitle">{homePage.servicesPreview.subtitle}</p>
       </div>
       <div class="services-preview__grid">
-        {featuredServices.map(s => (
+        {homePage.servicesPreview.items.map(s => (
           <ServiceCard title={s.title} description={s.description} icon={s.icon} />
         ))}
       </div>
       <div class="services-preview__cta">
-        <a href="/services" class="btn btn--outline-dark">View All Services</a>
+        <a href={homePage.servicesPreview.ctaHref} class="btn btn--outline-dark">
+          {homePage.servicesPreview.ctaText}
+        </a>
       </div>
     </div>
   </section>
@@ -181,11 +94,11 @@ const testimonials = [
   <section class="testimonials bg-dark">
     <div class="container">
       <div class="section-header section-header--centered">
-        <p class="section-eyebrow" style="color: #f0a500">Client Voices</p>
-        <h2 class="section-title" style="color: white">What Our <span>Clients</span> Say</h2>
+        <p class="section-eyebrow" style="color: #f0a500">{homePage.testimonials.eyebrow}</p>
+        <h2 class="section-title" style="color: white" set:html={homePage.testimonials.title} />
       </div>
       <div class="testimonials__grid">
-        {testimonials.map(t => (
+        {homePage.testimonials.items.map(t => (
           <blockquote class="testimonial">
             <div class="testimonial__stars" aria-label="5 stars">★★★★★</div>
             <p class="testimonial__quote">"{t.quote}"</p>
@@ -202,14 +115,16 @@ const testimonials = [
   <section class="cta-banner">
     <div class="container cta-banner__inner">
       <div class="cta-banner__text">
-        <h2 class="cta-banner__title">Ready to Start Your Project?</h2>
-        <p class="cta-banner__subtitle">Get a detailed, no-obligation quote within 48 hours. Our team is ready to make your vision a reality.</p>
+        <h2 class="cta-banner__title">{homePage.ctaBanner.title}</h2>
+        <p class="cta-banner__subtitle">{homePage.ctaBanner.subtitle}</p>
       </div>
       <div class="cta-banner__actions">
-        <a href="/contact" class="btn btn--dark">Get a Free Quote</a>
-        <a href="tel:+48221234567" class="btn btn--outline-dark">
+        <a href={homePage.ctaBanner.primaryCtaHref} class="btn btn--dark">
+          {homePage.ctaBanner.primaryCtaText}
+        </a>
+        <a href={company.phone.href} class="btn btn--outline-dark">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.28h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.37a16 16 0 0 0 6.34 6.34l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-          Call Us Now
+          {homePage.ctaBanner.secondaryCtaText}
         </a>
       </div>
     </div>

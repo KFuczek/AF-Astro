@@ -1,4 +1,6 @@
 ---
+import { company } from '@/data/config';
+
 interface Props {
   title: string;
   subtitle?: string;
@@ -21,7 +23,7 @@ const {
 <section class={`hero hero--${size}`} aria-label="Page hero">
   <div class="hero__backdrop" aria-hidden="true"></div>
   <div class="container hero__content">
-    <p class="hero__eyebrow">ArchiForce Construction</p>
+    <p class="hero__eyebrow">{company.fullName}</p>
     <h1 class="hero__title" set:html={title} />
     {subtitle && <p class="hero__subtitle">{subtitle}</p>}
     <div class="hero__actions">

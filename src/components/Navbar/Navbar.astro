@@ -1,25 +1,20 @@
 ---
-const navLinks = [
-  { href: '/',         label: 'Home' },
-  { href: '/about',    label: 'About' },
-  { href: '/services', label: 'Services' },
-  { href: '/projects', label: 'Projects' },
-  { href: '/contact',  label: 'Contact' },
-];
+import { company } from '@/data/config';
+import { nav } from '@/data/strings';
 
 const currentPath = Astro.url.pathname;
 ---
 
 <header class="navbar">
   <div class="container navbar__inner">
-    <a href="/" class="navbar__logo" aria-label="ArchiForce – go to home">
-      <span class="navbar__logo-badge">AF</span>
-      <span class="navbar__logo-name">ArchiForce</span>
+    <a href="/" class="navbar__logo" aria-label={nav.logoAriaLabel}>
+      <span class="navbar__logo-badge">{company.logoBadge}</span>
+      <span class="navbar__logo-name">{company.name}</span>
     </a>
 
-    <nav class="navbar__nav" id="navbar-nav" aria-label="Main navigation">
+    <nav class="navbar__nav" id="navbar-nav" aria-label={nav.ariaLabel}>
       <ul class="navbar__links" role="list">
-        {navLinks.map(link => (
+        {nav.links.map(link => (
           <li>
             <a
               href={link.href}
@@ -40,12 +35,12 @@ const currentPath = Astro.url.pathname;
       </ul>
     </nav>
 
-    <a href="/contact" class="btn btn--primary navbar__cta">Get a Quote</a>
+    <a href="/contact" class="btn btn--primary navbar__cta">{nav.ctaText}</a>
 
     <button
       class="navbar__hamburger"
       id="navbar-hamburger"
-      aria-label="Toggle navigation menu"
+      aria-label={nav.hamburgerAriaLabel}
       aria-expanded="false"
       aria-controls="navbar-nav"
     >

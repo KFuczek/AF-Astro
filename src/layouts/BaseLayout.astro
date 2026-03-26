@@ -2,6 +2,8 @@
 import Navbar from '@/components/Navbar/Navbar.astro';
 import Footer from '@/components/Footer/Footer.astro';
 import '@/styles/global.scss';
+import { company } from '@/data/config';
+import { seo, layout } from '@/data/strings';
 
 interface Props {
   title: string;
@@ -10,11 +12,10 @@ interface Props {
 
 const {
   title,
-  description = 'ArchiForce Construction – reliable, professional construction services in Warsaw. General construction, renovations, roofing, electrical, and more.',
+  description = seo.defaultDescription,
 } = Astro.props;
 
-const siteName  = 'ArchiForce Construction';
-const fullTitle = `${title} | ${siteName}`;
+const fullTitle = `${title} | ${company.fullName}`;
 ---
 
 <!doctype html>
@@ -34,7 +35,7 @@ const fullTitle = `${title} | ${siteName}`;
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   </head>
   <body>
-    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <a href="#main-content" class="skip-link">{layout.skipLink}</a>
     <Navbar />
     <main id="main-content">
       <slot />

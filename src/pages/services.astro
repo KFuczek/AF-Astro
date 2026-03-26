@@ -3,70 +3,26 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import Hero from '@/components/Hero/Hero.astro';
 import ServiceCard from '@/components/ServiceCard/ServiceCard.astro';
 import '@/styles/pages/services.scss';
-
-const services = [
-  {
-    icon: '🏗️',
-    title: 'General Construction',
-    description: 'Full-cycle new-build projects from groundworks and foundations through to structural frame, envelope, and handover. We manage residential blocks, commercial units, and industrial facilities with equal rigour.',
-  },
-  {
-    icon: '🔨',
-    title: 'Renovations & Refurbishments',
-    description: 'Sympathetic restoration and modern refurbishment of existing buildings. Whether it\'s a heritage property requiring careful intervention or an ageing office block needing a complete overhaul, we deliver with minimal disruption.',
-  },
-  {
-    icon: '🪟',
-    title: 'Interior Finishing',
-    description: 'High-quality plastering, screed flooring, tiling, painting, and fitted joinery. We work closely with interior designers and clients to ensure finishes meet the exact brief — on time and to specification.',
-  },
-  {
-    icon: '🏠',
-    title: 'Roofing & Waterproofing',
-    description: 'Flat and pitched roof installations, re-roofing, insulation upgrades, and full waterproofing systems. We use certified materials and our workmanship carries a 10-year guarantee.',
-  },
-  {
-    icon: '⚡',
-    title: 'Electrical & Plumbing Installation',
-    description: 'Full MEP (Mechanical, Electrical, Plumbing) services carried out by certified installers. From single-phase domestic wiring to three-phase commercial systems, boiler installations to full HVAC fit-outs.',
-  },
-  {
-    icon: '📋',
-    title: 'Project Management & Consulting',
-    description: 'Not ready to build yet? Our experienced project managers can help you plan, budget, obtain permits, and select the right contractors. Independent consulting from people who know construction inside out.',
-  },
-];
-
-const process = [
-  { step: '01', title: 'Initial Consultation', text: 'We meet on-site or online to understand your goals, timeline, and budget. No obligation, no cost.' },
-  { step: '02', title: 'Detailed Quote',        text: 'Within 48 hours, you receive a comprehensive, itemised quote with no hidden extras.' },
-  { step: '03', title: 'Project Planning',      text: 'We develop a detailed programme, assign your project manager, and agree on milestones.' },
-  { step: '04', title: 'Construction',          text: 'Works begin. You receive weekly progress reports and have direct access to your PM at all times.' },
-  { step: '05', title: 'Quality Inspection',    text: 'Every stage is inspected before sign-off. Nothing moves forward unless it meets our standard.' },
-  { step: '06', title: 'Handover & Aftercare',  text: 'You receive a full completion report, all warranties, and 12 months of dedicated aftercare support.' },
-];
+import { seo, servicesPage } from '@/data/strings';
 ---
 
-<BaseLayout
-  title="Services"
-  description="ArchiForce Construction offers general construction, renovations, interior finishing, roofing, electrical and plumbing installation, and project management across Poland."
->
+<BaseLayout title={seo.pages.services.title} description={seo.pages.services.description}>
   <Hero
-    title="Professional Construction <span>Services</span>"
-    subtitle="From the first shovel in the ground to the final coat of paint — ArchiForce offers a complete range of construction services, all under one roof."
-    ctaText="Request a Quote"
-    ctaLink="/contact"
+    title={servicesPage.hero.title}
+    subtitle={servicesPage.hero.subtitle}
+    ctaText={servicesPage.hero.ctaText}
+    ctaLink={servicesPage.hero.ctaLink}
   />
 
   <section class="services-list">
     <div class="container">
       <div class="section-header section-header--centered">
-        <p class="section-eyebrow">What We Offer</p>
-        <h2 class="section-title">Our <span>Six Core Services</span></h2>
-        <p class="section-subtitle">Each service is backed by certified professionals, transparent pricing, and our quality guarantee.</p>
+        <p class="section-eyebrow">{servicesPage.list.eyebrow}</p>
+        <h2 class="section-title" set:html={servicesPage.list.title} />
+        <p class="section-subtitle">{servicesPage.list.subtitle}</p>
       </div>
       <div class="services-list__grid">
-        {services.map(s => (
+        {servicesPage.list.items.map(s => (
           <ServiceCard title={s.title} description={s.description} icon={s.icon} />
         ))}
       </div>
@@ -76,12 +32,12 @@ const process = [
   <section class="process bg-light">
     <div class="container">
       <div class="section-header section-header--centered">
-        <p class="section-eyebrow">How We Work</p>
-        <h2 class="section-title">Our <span>Process</span></h2>
-        <p class="section-subtitle">A clear, structured approach from first contact to final handover.</p>
+        <p class="section-eyebrow">{servicesPage.process.eyebrow}</p>
+        <h2 class="section-title" set:html={servicesPage.process.title} />
+        <p class="section-subtitle">{servicesPage.process.subtitle}</p>
       </div>
       <div class="process__grid">
-        {process.map(p => (
+        {servicesPage.process.steps.map(p => (
           <div class="process-step">
             <span class="process-step__number">{p.step}</span>
             <h3 class="process-step__title">{p.title}</h3>
@@ -94,14 +50,14 @@ const process = [
 
   <section class="guarantee bg-dark">
     <div class="container guarantee__inner">
-      <div class="guarantee__icon" aria-hidden="true">🛡️</div>
+      <div class="guarantee__icon" aria-hidden="true">{servicesPage.guarantee.icon}</div>
       <div class="guarantee__content">
-        <h2 class="guarantee__title">Our Quality Guarantee</h2>
-        <p class="guarantee__text">
-          All structural works carry a 5-year warranty. Roofing and waterproofing are guaranteed for 10 years. Interior finishes are covered for 2 years. If anything is not right, we come back and fix it — at no extra charge.
-        </p>
+        <h2 class="guarantee__title">{servicesPage.guarantee.title}</h2>
+        <p class="guarantee__text">{servicesPage.guarantee.text}</p>
       </div>
-      <a href="/contact" class="btn btn--primary guarantee__cta">Get a Free Quote</a>
+      <a href={servicesPage.guarantee.ctaHref} class="btn btn--primary guarantee__cta">
+        {servicesPage.guarantee.ctaText}
+      </a>
     </div>
   </section>
 </BaseLayout>
