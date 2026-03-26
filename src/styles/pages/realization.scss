@@ -1,0 +1,240 @@
+@use '../' as *;
+
+// ── Project visual hero ────────────────────────────────────────────────────────
+.project-hero {
+  position: relative;
+  height: 420px;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+
+  @include respond-below(md) { height: 280px; }
+
+  &__bg {
+    position: absolute;
+    inset: 0;
+    transition: transform $transition-slow;
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba($color-dark, 0.1) 0%,
+        rgba($color-dark, 0.75) 100%
+      );
+    }
+
+    &::before {
+      content: '🏗';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -55%);
+      font-size: 8rem;
+      opacity: 0.08;
+      z-index: 1;
+    }
+  }
+
+  &__overlay {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    padding: $spacing-xl $spacing-md $spacing-lg;
+  }
+
+  &__category {
+    display: inline-block;
+    background-color: $color-accent;
+    color: $color-dark;
+    font-size: $font-size-xs;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 0.3rem 0.75rem;
+    border-radius: $radius-sm;
+    margin-bottom: $spacing-sm;
+  }
+
+  &__title {
+    font-size: $font-size-4xl;
+    color: $color-white;
+    line-height: 1.15;
+    max-width: 700px;
+
+    @include respond-below(md) { font-size: $font-size-3xl; }
+    @include respond-below(sm) { font-size: $font-size-2xl; }
+  }
+
+  &__meta {
+    display: flex;
+    align-items: center;
+    gap: $spacing-md;
+    margin-top: $spacing-sm;
+    flex-wrap: wrap;
+  }
+
+  &__meta-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    color: rgba($color-white, 0.8);
+    font-size: $font-size-sm;
+
+    svg { color: $color-accent; }
+  }
+}
+
+// ── Breadcrumb ─────────────────────────────────────────────────────────────────
+.breadcrumb {
+  background-color: $color-light;
+  border-bottom: 1px solid $color-gray-light;
+  padding: $spacing-xs 0;
+
+  &__inner {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: $font-size-sm;
+    color: $color-gray;
+  }
+
+  &__link {
+    color: $color-gray;
+    text-decoration: none;
+    transition: color $transition-base;
+
+    &:hover { color: $color-accent; }
+  }
+
+  &__sep {
+    color: $color-gray-light;
+    font-size: $font-size-xs;
+  }
+
+  &__current {
+    color: $color-dark;
+    font-weight: 500;
+  }
+}
+
+// ── Content layout ─────────────────────────────────────────────────────────────
+.project-content {
+  @include section-padding;
+
+  &__inner {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: $spacing-xl;
+    align-items: start;
+
+    @include respond-below(lg) { grid-template-columns: 1fr; }
+  }
+}
+
+// ── Description ────────────────────────────────────────────────────────────────
+.project-description {
+  &__body {
+    p {
+      color: $color-gray;
+      font-size: $font-size-base;
+      line-height: 1.8;
+      margin-bottom: $spacing-md;
+
+      &:last-child { margin-bottom: 0; }
+    }
+  }
+}
+
+// ── Highlights sidebar ─────────────────────────────────────────────────────────
+.project-highlights {
+  @include card-base;
+  padding: $spacing-md;
+  position: sticky;
+  top: $spacing-md;
+
+  @include respond-below(lg) { position: static; }
+
+  &__title {
+    font-size: $font-size-base;
+    font-weight: 700;
+    color: $color-dark;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: $font-size-xs;
+    margin-bottom: $spacing-md;
+    padding-bottom: $spacing-xs;
+    border-bottom: 2px solid $color-accent;
+  }
+
+  &__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  &__item {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: $spacing-sm;
+    padding: 0.65rem 0;
+    border-bottom: 1px solid $color-gray-light;
+
+    &:last-child { border-bottom: none; }
+  }
+
+  &__label {
+    font-size: $font-size-sm;
+    color: $color-gray;
+  }
+
+  &__value {
+    font-size: $font-size-sm;
+    font-weight: 600;
+    color: $color-dark;
+    text-align: right;
+  }
+}
+
+// ── CTA strip ──────────────────────────────────────────────────────────────────
+.project-cta {
+  background-color: $color-dark;
+  padding-block: $spacing-xl;
+
+  &__inner {
+    @include flex-between;
+    gap: $spacing-lg;
+    flex-wrap: wrap;
+
+    @include respond-below(md) {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+
+  &__text {
+    p {
+      color: rgba($color-white, 0.7);
+      font-size: $font-size-base;
+      margin-top: $spacing-xs;
+    }
+  }
+
+  &__title {
+    font-size: $font-size-2xl;
+    color: $color-white;
+  }
+
+  &__actions {
+    display: flex;
+    gap: $spacing-sm;
+    flex-wrap: wrap;
+    flex-shrink: 0;
+  }
+}

@@ -4,6 +4,10 @@
   @include card-base;
   @include hover-lift;
   overflow: hidden;
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
 
   &:hover .project-card__visual-inner {
     opacity: 1;
@@ -92,5 +96,20 @@
     color: $color-gray;
     font-size: $font-size-sm;
     line-height: 1.65;
+    margin-bottom: $spacing-sm;
+  }
+
+  &__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: $font-size-sm;
+    font-weight: 600;
+    color: $color-accent;
+    transition: gap $transition-base;
+  }
+
+  &:hover &__cta {
+    gap: 0.65rem;
   }
 }
