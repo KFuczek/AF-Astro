@@ -499,6 +499,31 @@ export const projectsPage = {
   },
 } as const;
 
+// ── Realization detail page ───────────────────────────────────────────────────
+export const realizationPage = {
+  breadcrumb: {
+    ariaLabel: 'Breadcrumb',
+    home:      'Home',
+    projects:  'Projects',
+    separator: '›',
+  },
+  meta: {
+    completedPrefix: 'Completed',
+  },
+  highlights: {
+    ariaLabel: 'Project highlights',
+    title:     'Project Details',
+  },
+  cta: {
+    title:            'Interested in a Similar Project?',
+    subtitle:         "Tell us about your requirements — we'll respond with a free, no-obligation quote within 48 hours.",
+    primaryCtaText:   'Get a Free Quote',
+    primaryCtaHref:   '/contact',
+    backText:         'All Projects',
+    backHref:         '/projects',
+  },
+} as const;
+
 // ── Contact page ──────────────────────────────────────────────────────────────
 export const contactPage = {
   hero: {
