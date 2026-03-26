@@ -1,0 +1,40 @@
+---
+interface Props {
+  title: string;
+  subtitle?: string;
+  ctaText?: string;
+  ctaLink?: string;
+  secondaryCta?: { text: string; href: string };
+  size?: 'normal' | 'large';
+}
+
+const {
+  title,
+  subtitle,
+  ctaText,
+  ctaLink = '/contact',
+  secondaryCta,
+  size = 'normal',
+} = Astro.props;
+---
+
+<section class={`hero hero--${size}`} aria-label="Page hero">
+  <div class="hero__backdrop" aria-hidden="true"></div>
+  <div class="container hero__content">
+    <p class="hero__eyebrow">ArchiForce Construction</p>
+    <h1 class="hero__title" set:html={title} />
+    {subtitle && <p class="hero__subtitle">{subtitle}</p>}
+    <div class="hero__actions">
+      {ctaText && (
+        <a href={ctaLink} class="btn btn--primary">{ctaText}</a>
+      )}
+      {secondaryCta && (
+        <a href={secondaryCta.href} class="btn btn--outline">{secondaryCta.text}</a>
+      )}
+    </div>
+  </div>
+</section>
+
+<style lang="scss">
+  @use './Hero.scss';
+</style>

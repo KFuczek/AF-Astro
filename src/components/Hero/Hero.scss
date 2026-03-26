@@ -1,0 +1,108 @@
+@use '../../styles' as *;
+
+.hero {
+  position: relative;
+  background-color: $color-dark;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+
+  &--normal {
+    min-height: 380px;
+    @include section-padding;
+  }
+
+  &--large {
+    min-height: 620px;
+    @include section-padding;
+
+    @include respond-below(md) {
+      min-height: 480px;
+    }
+  }
+
+  // ── Decorative backdrop ───────────────────────────────────────────────────
+  &__backdrop {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      135deg,
+      rgba($color-dark, 0.98) 40%,
+      rgba($color-dark-secondary, 0.92) 100%
+    );
+
+    // Subtle grid pattern
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        repeating-linear-gradient(
+          0deg,
+          transparent,
+          transparent 48px,
+          rgba($color-accent, 0.04) 48px,
+          rgba($color-accent, 0.04) 50px
+        ),
+        repeating-linear-gradient(
+          90deg,
+          transparent,
+          transparent 48px,
+          rgba($color-accent, 0.04) 48px,
+          rgba($color-accent, 0.04) 50px
+        );
+    }
+
+    // Radial glow accent (top-right)
+    &::after {
+      content: '';
+      position: absolute;
+      right: -80px;
+      top: -80px;
+      width: 560px;
+      height: 560px;
+      background: radial-gradient(
+        circle,
+        rgba($color-accent, 0.1) 0%,
+        transparent 65%
+      );
+      pointer-events: none;
+    }
+  }
+
+  // ── Content ───────────────────────────────────────────────────────────────
+  &__content {
+    position: relative;
+    z-index: 1;
+    max-width: 740px;
+  }
+
+  &__eyebrow {
+    @include eyebrow;
+  }
+
+  &__title {
+    font-size: clamp($font-size-3xl, 5vw, $font-size-5xl);
+    color: $color-white;
+    line-height: 1.08;
+    margin-bottom: $spacing-md;
+
+    :global(span) {
+      color: $color-accent;
+    }
+  }
+
+  &__subtitle {
+    color: rgba($color-white, 0.72);
+    font-size: clamp($font-size-base, 2vw, $font-size-lg);
+    line-height: 1.75;
+    margin-bottom: $spacing-xl;
+    max-width: 580px;
+  }
+
+  &__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $spacing-sm;
+  }
+}

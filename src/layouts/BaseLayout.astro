@@ -1,7 +1,7 @@
 ---
-import Navbar from '../components/Navbar.astro';
-import Footer from '../components/Footer.astro';
-import '../styles/global.scss';
+import Navbar from '@/components/Navbar/Navbar.astro';
+import Footer from '@/components/Footer/Footer.astro';
+import '@/styles/global.scss';
 
 interface Props {
   title: string;
@@ -13,7 +13,7 @@ const {
   description = 'ArchiForce Construction – reliable, professional construction services in Warsaw. General construction, renovations, roofing, electrical, and more.',
 } = Astro.props;
 
-const siteName = 'ArchiForce Construction';
+const siteName  = 'ArchiForce Construction';
 const fullTitle = `${title} | ${siteName}`;
 ---
 
@@ -42,24 +42,3 @@ const fullTitle = `${title} | ${siteName}`;
     <Footer />
   </body>
 </html>
-
-<style lang="scss" is:global>
-  @use '../styles/variables' as *;
-
-  .skip-link {
-    position: absolute;
-    top: -100%;
-    left: $spacing-sm;
-    background-color: $color-accent;
-    color: $color-dark;
-    font-weight: 700;
-    padding: 0.5rem 1rem;
-    border-radius: $radius-sm;
-    z-index: 9999;
-    transition: top $transition-base;
-
-    &:focus {
-      top: $spacing-xs;
-    }
-  }
-</style>

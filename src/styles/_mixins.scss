@@ -1,0 +1,87 @@
+// ─── Responsive breakpoints ───────────────────────────────────────────────────
+// Usage: @include respond-below(md) { ... }
+@use 'sass:map';
+@use 'variables' as *;
+
+$_breakpoints: (
+  'sm': $bp-sm,
+  'md': $bp-md,
+  'lg': $bp-lg,
+  'xl': $bp-xl,
+);
+
+@mixin respond-below($bp) {
+  $value: map.get($_breakpoints, $bp);
+  @media (max-width: #{$value}) {
+    @content;
+  }
+}
+
+// ─── Layout helpers ───────────────────────────────────────────────────────────
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin flex-start {
+  display: flex;
+  align-items: flex-start;
+}
+
+// ─── Typography ───────────────────────────────────────────────────────────────
+@mixin eyebrow {
+  display: inline-block;
+  font-size: $font-size-sm;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: $color-accent;
+  margin-bottom: $spacing-xs;
+}
+
+// ─── Component patterns ───────────────────────────────────────────────────────
+
+// Base card: white bg, border, rounded
+@mixin card-base {
+  background-color: $color-white;
+  border: 1px solid $color-gray-light;
+  border-radius: $radius-md;
+}
+
+// Hover lift effect
+@mixin hover-lift($shadow: $shadow-lg) {
+  transition: transform $transition-slow, box-shadow $transition-slow;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: $shadow;
+  }
+}
+
+// Accent top border reveal on hover
+@mixin hover-accent-border {
+  border-top: 3px solid transparent;
+  transition: border-top-color $transition-slow;
+
+  &:hover {
+    border-top-color: $color-accent;
+  }
+}
+
+// Dark section with subtle overlay
+@mixin dark-section {
+  background-color: $color-dark;
+  color: rgba($color-white, 0.75);
+}
+
+// Consistent section vertical padding
+@mixin section-padding {
+  padding-block: $spacing-2xl;
+}

@@ -1,0 +1,88 @@
+@use '../' as *;
+
+// ── Services grid ──────────────────────────────────────────────────────────────
+.services-list__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: $spacing-md;
+
+  @include respond-below(lg) { grid-template-columns: repeat(2, 1fr); }
+  @include respond-below(sm) { grid-template-columns: 1fr; }
+}
+
+// ── Process ────────────────────────────────────────────────────────────────────
+.process__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: $spacing-md;
+
+  @include respond-below(lg) { grid-template-columns: repeat(2, 1fr); }
+  @include respond-below(sm) { grid-template-columns: 1fr; }
+}
+
+.process-step {
+  @include card-base;
+  @include hover-lift($shadow-md);
+  padding: $spacing-lg $spacing-md;
+
+  &__number {
+    display: inline-block;
+    font-size: $font-size-3xl;
+    font-weight: 800;
+    color: $color-accent;
+    opacity: 0.3;
+    line-height: 1;
+    margin-bottom: $spacing-sm;
+  }
+
+  &__title {
+    font-size: $font-size-lg;
+    color: $color-dark;
+    margin-bottom: $spacing-xs;
+  }
+
+  &__text {
+    font-size: $font-size-sm;
+    color: $color-gray;
+    line-height: 1.7;
+  }
+}
+
+// ── Guarantee ──────────────────────────────────────────────────────────────────
+.guarantee {
+  padding-block: $spacing-xl;
+
+  &__inner {
+    display: flex;
+    align-items: center;
+    gap: $spacing-xl;
+    flex-wrap: wrap;
+
+    @include respond-below(md) {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+
+  &__icon {
+    font-size: 3.5rem;
+    flex-shrink: 0;
+  }
+
+  &__content { flex: 1; }
+
+  &__title {
+    font-size: $font-size-2xl;
+    color: $color-white;
+    margin-bottom: $spacing-xs;
+  }
+
+  &__text {
+    color: rgba($color-white, 0.72);
+    font-size: $font-size-sm;
+    line-height: 1.75;
+    max-width: 580px;
+  }
+
+  &__cta { flex-shrink: 0; }
+}

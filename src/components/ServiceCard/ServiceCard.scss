@@ -1,0 +1,56 @@
+@use '../../styles' as *;
+
+.service-card {
+  @include card-base;
+  @include hover-lift;
+  @include hover-accent-border;
+  padding: $spacing-lg;
+  display: flex;
+  flex-direction: column;
+
+  &__icon {
+    font-size: 2.4rem;
+    margin-bottom: $spacing-sm;
+    line-height: 1;
+  }
+
+  &__title {
+    font-size: $font-size-xl;
+    color: $color-dark;
+    margin-bottom: $spacing-xs;
+  }
+
+  &__description {
+    color: $color-gray;
+    font-size: $font-size-sm;
+    line-height: 1.75;
+    flex: 1;
+    margin-bottom: $spacing-md;
+  }
+
+  &__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: $color-accent;
+    font-weight: 600;
+    font-size: $font-size-sm;
+    transition: gap $transition-base, color $transition-base;
+    margin-top: auto;
+
+    &:hover,
+    &:focus-visible {
+      color: $color-accent-dark;
+      gap: 0.65rem;
+      outline: none;
+    }
+
+    svg {
+      transition: transform $transition-base;
+    }
+
+    &:hover svg {
+      transform: translateX(3px);
+    }
+  }
+}

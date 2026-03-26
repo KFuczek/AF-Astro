@@ -1,0 +1,9 @@
+// ─── Design system entry point ────────────────────────────────────────────────
+// @use this file from any component or page SCSS:
+//   @use '../../styles' as *;   (from src/components/*/
+//   @use '../' as *;            (from src/styles/pages/)
+//
+// All variables and mixins are forwarded with no namespace (as *).
+
+@forward 'variables';
+@forward 'mixins';

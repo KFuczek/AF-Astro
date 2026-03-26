@@ -1,7 +1,8 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import Hero from '../components/Hero.astro';
-import ServiceCard from '../components/ServiceCard.astro';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Hero from '@/components/Hero/Hero.astro';
+import ServiceCard from '@/components/ServiceCard/ServiceCard.astro';
+import '@/styles/pages/services.scss';
 
 const services = [
   {
@@ -38,11 +39,11 @@ const services = [
 
 const process = [
   { step: '01', title: 'Initial Consultation', text: 'We meet on-site or online to understand your goals, timeline, and budget. No obligation, no cost.' },
-  { step: '02', title: 'Detailed Quote', text: 'Within 48 hours, you receive a comprehensive, itemised quote with no hidden extras.' },
-  { step: '03', title: 'Project Planning', text: 'We develop a detailed programme, assign your project manager, and agree on milestones.' },
-  { step: '04', title: 'Construction', text: 'Works begin. You receive weekly progress reports and have direct access to your PM at all times.' },
-  { step: '05', title: 'Quality Inspection', text: 'Every stage is inspected before sign-off. Nothing moves forward unless it meets our standard.' },
-  { step: '06', title: 'Handover & Aftercare', text: 'You receive a full completion report, all warranties, and 12 months of dedicated aftercare support.' },
+  { step: '02', title: 'Detailed Quote',        text: 'Within 48 hours, you receive a comprehensive, itemised quote with no hidden extras.' },
+  { step: '03', title: 'Project Planning',      text: 'We develop a detailed programme, assign your project manager, and agree on milestones.' },
+  { step: '04', title: 'Construction',          text: 'Works begin. You receive weekly progress reports and have direct access to your PM at all times.' },
+  { step: '05', title: 'Quality Inspection',    text: 'Every stage is inspected before sign-off. Nothing moves forward unless it meets our standard.' },
+  { step: '06', title: 'Handover & Aftercare',  text: 'You receive a full completion report, all warranties, and 12 months of dedicated aftercare support.' },
 ];
 ---
 
@@ -57,7 +58,6 @@ const process = [
     ctaLink="/contact"
   />
 
-  <!-- Services Grid -->
   <section class="services-list">
     <div class="container">
       <div class="section-header section-header--centered">
@@ -73,7 +73,6 @@ const process = [
     </div>
   </section>
 
-  <!-- Process -->
   <section class="process bg-light">
     <div class="container">
       <div class="section-header section-header--centered">
@@ -93,7 +92,6 @@ const process = [
     </div>
   </section>
 
-  <!-- Guarantee Banner -->
   <section class="guarantee bg-dark">
     <div class="container guarantee__inner">
       <div class="guarantee__icon" aria-hidden="true">🛡️</div>
@@ -107,117 +105,3 @@ const process = [
     </div>
   </section>
 </BaseLayout>
-
-<style lang="scss">
-  @use '../styles/variables' as *;
-
-  // ── Services Grid ──────────────────────────────────────────────────────────
-  .services-list__grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: $spacing-md;
-
-    @media (max-width: #{$bp-lg}) {
-      grid-template-columns: repeat(2, 1fr);
-    }
-
-    @media (max-width: #{$bp-sm}) {
-      grid-template-columns: 1fr;
-    }
-  }
-
-  // ── Process ────────────────────────────────────────────────────────────────
-  .process__grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: $spacing-md;
-    counter-reset: step;
-
-    @media (max-width: #{$bp-lg}) {
-      grid-template-columns: repeat(2, 1fr);
-    }
-
-    @media (max-width: #{$bp-sm}) {
-      grid-template-columns: 1fr;
-    }
-  }
-
-  .process-step {
-    background-color: $color-white;
-    border: 1px solid $color-gray-light;
-    border-radius: $radius-md;
-    padding: $spacing-lg $spacing-md;
-    position: relative;
-    transition: transform $transition-slow, box-shadow $transition-slow;
-
-    &:hover {
-      transform: translateY(-4px);
-      box-shadow: $shadow-md;
-    }
-
-    &__number {
-      display: inline-block;
-      font-size: $font-size-3xl;
-      font-weight: 800;
-      color: $color-accent;
-      opacity: 0.3;
-      line-height: 1;
-      margin-bottom: $spacing-sm;
-    }
-
-    &__title {
-      font-size: $font-size-lg;
-      color: $color-dark;
-      margin-bottom: $spacing-xs;
-    }
-
-    &__text {
-      font-size: $font-size-sm;
-      color: $color-gray;
-      line-height: 1.7;
-    }
-  }
-
-  // ── Guarantee ──────────────────────────────────────────────────────────────
-  .guarantee {
-    padding-block: $spacing-xl;
-
-    &__inner {
-      display: flex;
-      align-items: center;
-      gap: $spacing-xl;
-      flex-wrap: wrap;
-
-      @media (max-width: #{$bp-md}) {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-    }
-
-    &__icon {
-      font-size: 3.5rem;
-      flex-shrink: 0;
-    }
-
-    &__content {
-      flex: 1;
-    }
-
-    &__title {
-      font-size: $font-size-2xl;
-      color: $color-white;
-      margin-bottom: $spacing-xs;
-    }
-
-    &__text {
-      color: rgba($color-white, 0.72);
-      font-size: $font-size-sm;
-      line-height: 1.75;
-      max-width: 580px;
-    }
-
-    &__cta {
-      flex-shrink: 0;
-    }
-  }
-</style>

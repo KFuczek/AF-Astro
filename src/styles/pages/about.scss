@@ -1,0 +1,238 @@
+@use '../' as *;
+
+// ── Story ──────────────────────────────────────────────────────────────────────
+.story {
+  &__inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: $spacing-2xl;
+    align-items: start;
+
+    @include respond-below(lg) {
+      grid-template-columns: 1fr;
+      gap: $spacing-xl;
+    }
+  }
+
+  &__text {
+    p {
+      color: $color-gray;
+      line-height: 1.8;
+      margin-bottom: $spacing-md;
+
+      &:last-child { margin-bottom: 0; }
+    }
+  }
+
+  &__timeline-title {
+    font-size: $font-size-lg;
+    color: $color-dark;
+    margin-bottom: $spacing-md;
+  }
+}
+
+.timeline {
+  display: flex;
+  flex-direction: column;
+
+  &__item {
+    display: grid;
+    grid-template-columns: 72px 1fr;
+    gap: $spacing-sm;
+    padding-bottom: $spacing-md;
+    position: relative;
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: 36px;
+      top: 8px;
+      bottom: 0;
+      width: 2px;
+      background-color: $color-gray-light;
+    }
+
+    &:last-child::before { display: none; }
+
+    &::after {
+      content: '';
+      position: absolute;
+      left: 30px;
+      top: 6px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background-color: $color-accent;
+      border: 2px solid $color-white;
+      box-shadow: 0 0 0 2px $color-accent;
+    }
+  }
+
+  &__year {
+    font-weight: 800;
+    font-size: $font-size-sm;
+    color: $color-accent;
+    text-align: right;
+    padding-right: $spacing-sm;
+    padding-top: 3px;
+  }
+
+  &__event {
+    font-size: $font-size-sm;
+    color: $color-gray;
+    line-height: 1.6;
+    padding-top: 3px;
+  }
+}
+
+// ── Stats ──────────────────────────────────────────────────────────────────────
+.about-stats {
+  @include dark-section;
+  padding-block: $spacing-xl;
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: $spacing-md;
+    text-align: center;
+
+    @include respond-below(md) { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  &__item { padding: $spacing-sm; }
+
+  &__value {
+    display: block;
+    font-size: $font-size-4xl;
+    font-weight: 800;
+    color: $color-accent;
+    margin-bottom: 0.25rem;
+  }
+
+  &__label {
+    font-size: $font-size-sm;
+    color: rgba($color-white, 0.6);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+}
+
+// ── Values ─────────────────────────────────────────────────────────────────────
+.values__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: $spacing-md;
+
+  @include respond-below(lg) { grid-template-columns: repeat(2, 1fr); }
+  @include respond-below(sm) { grid-template-columns: 1fr; }
+}
+
+.value-card {
+  @include card-base;
+  padding: $spacing-lg $spacing-md;
+  text-align: center;
+  @include hover-lift($shadow-md);
+
+  &__icon {
+    display: block;
+    font-size: 2.2rem;
+    margin-bottom: $spacing-sm;
+  }
+
+  &__title {
+    font-size: $font-size-lg;
+    color: $color-dark;
+    margin-bottom: $spacing-xs;
+  }
+
+  &__text {
+    font-size: $font-size-sm;
+    color: $color-gray;
+    line-height: 1.7;
+  }
+}
+
+// ── Team ───────────────────────────────────────────────────────────────────────
+.team__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: $spacing-md;
+
+  @include respond-below(md) { grid-template-columns: repeat(2, 1fr); }
+  @include respond-below(sm) { grid-template-columns: 1fr; }
+}
+
+.team-card {
+  @include flex-start;
+  gap: $spacing-md;
+  background-color: $color-light;
+  border: 1px solid $color-gray-light;
+  border-radius: $radius-md;
+  padding: $spacing-md;
+  transition: box-shadow $transition-slow, border-color $transition-slow;
+
+  &:hover {
+    box-shadow: $shadow-md;
+    border-color: $color-accent;
+  }
+
+  &__avatar {
+    @include flex-center;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background-color: $color-dark;
+    color: $color-accent;
+    font-weight: 800;
+    font-size: $font-size-sm;
+    flex-shrink: 0;
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  &__name {
+    font-size: $font-size-base;
+    color: $color-dark;
+  }
+
+  &__role {
+    font-size: $font-size-sm;
+    color: $color-gray;
+  }
+
+  &__years {
+    font-size: $font-size-xs;
+    color: $color-accent;
+    font-weight: 600;
+  }
+}
+
+// ── Certifications ─────────────────────────────────────────────────────────────
+.certs {
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-sm;
+    max-width: 640px;
+    margin-inline: auto;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+    color: rgba($color-white, 0.8);
+    font-size: $font-size-base;
+    background-color: rgba($color-white, 0.04);
+    border: 1px solid rgba($color-white, 0.08);
+    border-radius: $radius-md;
+    padding: $spacing-sm $spacing-md;
+    transition: background-color $transition-base;
+
+    &:hover { background-color: rgba($color-white, 0.07); }
+  }
+}

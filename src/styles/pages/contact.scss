@@ -1,0 +1,227 @@
+@use '../' as *;
+
+// ── Layout ─────────────────────────────────────────────────────────────────────
+.contact-section {
+  &__inner {
+    display: grid;
+    grid-template-columns: 1fr 1.6fr;
+    gap: $spacing-2xl;
+    align-items: start;
+
+    @include respond-below(lg) {
+      grid-template-columns: 1fr;
+      gap: $spacing-xl;
+    }
+  }
+}
+
+// ── Info panel ─────────────────────────────────────────────────────────────────
+.contact-info {
+  &__title {
+    font-size: $font-size-2xl;
+    color: $color-dark;
+    margin-bottom: $spacing-sm;
+  }
+
+  &__intro {
+    color: $color-gray;
+    font-size: $font-size-sm;
+    line-height: 1.75;
+    margin-bottom: $spacing-xl;
+  }
+
+  &__details {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-md;
+    margin-bottom: $spacing-xl;
+  }
+
+  &__promise {
+    background-color: $color-dark;
+    border-left: 4px solid $color-accent;
+    border-radius: $radius-sm;
+    padding: $spacing-md;
+    font-size: $font-size-sm;
+    color: rgba($color-white, 0.8);
+    line-height: 1.7;
+
+    strong { color: $color-accent; }
+  }
+}
+
+.contact-detail {
+  display: flex;
+  gap: $spacing-sm;
+  align-items: flex-start;
+
+  &__icon {
+    @include flex-center;
+    width: 44px;
+    height: 44px;
+    background-color: $color-light;
+    border: 1px solid $color-gray-light;
+    border-radius: $radius-md;
+    flex-shrink: 0;
+    color: $color-accent;
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    padding-top: 2px;
+  }
+
+  &__title {
+    font-size: $font-size-sm;
+    font-weight: 700;
+    color: $color-dark;
+  }
+
+  &__line {
+    font-size: $font-size-sm;
+    color: $color-gray;
+  }
+
+  &__link {
+    font-size: $font-size-sm;
+    color: $color-accent;
+    font-weight: 600;
+    transition: color $transition-base;
+
+    &:hover { color: $color-accent-dark; }
+  }
+}
+
+// ── Form wrapper ───────────────────────────────────────────────────────────────
+.contact-form-wrapper {
+  background-color: $color-light;
+  border: 1px solid $color-gray-light;
+  border-radius: $radius-md;
+  padding: $spacing-xl;
+
+  &__title {
+    font-size: $font-size-2xl;
+    color: $color-dark;
+    margin-bottom: $spacing-lg;
+  }
+}
+
+// ── Form ───────────────────────────────────────────────────────────────────────
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+
+  &__row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: $spacing-md;
+
+    @include respond-below(sm) { grid-template-columns: 1fr; }
+  }
+
+  &__submit {
+    align-self: flex-start;
+    padding: 0.9rem 2.2rem;
+  }
+
+  &__success {
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+    background-color: #d4edda;
+    border: 1px solid #c3e6cb;
+    border-radius: $radius-md;
+    padding: $spacing-md;
+    color: #155724;
+
+    svg { flex-shrink: 0; color: #28a745; }
+    p   { font-size: $font-size-sm; line-height: 1.5; }
+  }
+}
+
+// ── Form fields ────────────────────────────────────────────────────────────────
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+
+  &__label {
+    font-size: $font-size-sm;
+    font-weight: 600;
+    color: $color-dark;
+
+    span { color: $color-accent; margin-left: 2px; }
+  }
+
+  &__input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1.5px solid $color-gray-light;
+    border-radius: $radius-sm;
+    background-color: $color-white;
+    color: $color-text;
+    font-size: $font-size-base;
+    transition: border-color $transition-base, box-shadow $transition-base;
+    appearance: none;
+
+    &::placeholder { color: rgba($color-gray, 0.6); }
+
+    &:focus {
+      outline: none;
+      border-color: $color-accent;
+      box-shadow: 0 0 0 3px rgba($color-accent, 0.15);
+    }
+
+    &--error {
+      border-color: #dc3545;
+
+      &:focus { box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.15); }
+    }
+  }
+
+  &__select {
+    cursor: pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236b6b6b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    padding-right: 2.5rem;
+  }
+
+  &__textarea {
+    resize: vertical;
+    min-height: 140px;
+  }
+
+  &__error {
+    font-size: $font-size-xs;
+    color: #dc3545;
+    min-height: 1rem;
+  }
+
+  &--checkbox {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: $spacing-xs;
+  }
+
+  &__checkbox-label {
+    @include flex-start;
+    gap: $spacing-xs;
+    font-size: $font-size-sm;
+    color: $color-gray;
+    cursor: pointer;
+    line-height: 1.5;
+
+    input[type="checkbox"] {
+      margin-top: 3px;
+      flex-shrink: 0;
+      width: 16px;
+      height: 16px;
+      accent-color: $color-accent;
+      cursor: pointer;
+    }
+  }
+}

@@ -1,4 +1,4 @@
-@use 'variables' as *;
+@use 'index' as *;
 
 // ─── Reset ────────────────────────────────────────────────────────────────────
 *,
@@ -61,6 +61,24 @@ h1, h2, h3, h4, h5, h6 {
 
 section {
   padding-block: $spacing-2xl;
+}
+
+// ─── Skip link ────────────────────────────────────────────────────────────────
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: $spacing-sm;
+  background-color: $color-accent;
+  color: $color-dark;
+  font-weight: 700;
+  padding: 0.5rem 1rem;
+  border-radius: $radius-sm;
+  z-index: 9999;
+  transition: top $transition-base;
+
+  &:focus {
+    top: $spacing-xs;
+  }
 }
 
 // ─── Buttons ──────────────────────────────────────────────────────────────────
@@ -144,13 +162,7 @@ section {
 }
 
 .section-eyebrow {
-  display: inline-block;
-  font-size: $font-size-sm;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  color: $color-accent;
-  margin-bottom: $spacing-xs;
+  @include eyebrow;
 }
 
 .section-title {
@@ -171,6 +183,5 @@ section {
 }
 
 // ─── Utility ──────────────────────────────────────────────────────────────────
-.bg-light   { background-color: $color-light; }
-.bg-dark    { background-color: $color-dark; }
-.text-white { color: $color-white; }
+.bg-light { background-color: $color-light; }
+.bg-dark  { background-color: $color-dark; }
