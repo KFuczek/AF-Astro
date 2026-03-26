@@ -1,13 +1,14 @@
 ---
 import { company } from '@/data/config';
 import { nav } from '@/data/strings';
+import { url } from '@/utils/url';
 
 const currentPath = Astro.url.pathname;
 ---
 
 <header class="navbar">
   <div class="container navbar__inner">
-    <a href="/" class="navbar__logo" aria-label={nav.logoAriaLabel}>
+    <a href={url('/')} class="navbar__logo" aria-label={nav.logoAriaLabel}>
       <span class="navbar__logo-badge">{company.logoBadge}</span>
       <span class="navbar__logo-name">{company.name}</span>
     </a>
@@ -17,7 +18,7 @@ const currentPath = Astro.url.pathname;
         {nav.links.map(link => (
           <li>
             <a
-              href={link.href}
+              href={url(link.href)}
               class:list={[
                 'navbar__link',
                 {
@@ -35,7 +36,7 @@ const currentPath = Astro.url.pathname;
       </ul>
     </nav>
 
-    <a href="/contact" class="btn btn--primary navbar__cta">{nav.ctaText}</a>
+    <a href={url('/contact')} class="btn btn--primary navbar__cta">{nav.ctaText}</a>
 
     <button
       class="navbar__hamburger"

@@ -4,6 +4,7 @@ import Hero from '@/components/Hero/Hero.astro';
 import ProjectCard from '@/components/ProjectCard/ProjectCard.astro';
 import '@/styles/pages/projects.scss';
 import { seo, projectsPage } from '@/data/strings';
+import { url } from '@/utils/url';
 ---
 
 <BaseLayout title={seo.pages.projects.title} description={seo.pages.projects.description}>
@@ -30,7 +31,7 @@ import { seo, projectsPage } from '@/data/strings';
             location={p.location}
             year={p.year}
             bgColor={p.bgColor}
-            href={`/realizations/${p.slug}`}
+            href={url(`/realizations/${p.slug}`)}
           />
         ))}
       </div>
@@ -44,10 +45,10 @@ import { seo, projectsPage } from '@/data/strings';
         <p class="projects-cta__subtitle">{projectsPage.cta.subtitle}</p>
       </div>
       <div class="projects-cta__actions">
-        <a href={projectsPage.cta.primaryCtaHref} class="btn btn--primary">
+        <a href={url(projectsPage.cta.primaryCtaHref)} class="btn btn--primary">
           {projectsPage.cta.primaryCtaText}
         </a>
-        <a href={projectsPage.cta.secondaryCtaHref} class="btn btn--outline-dark">
+        <a href={url(projectsPage.cta.secondaryCtaHref)} class="btn btn--outline-dark">
           {projectsPage.cta.secondaryCtaText}
         </a>
       </div>

@@ -1,5 +1,6 @@
 ---
 import { company } from '@/data/config';
+import { url } from '@/utils/url';
 
 interface Props {
   title: string;
@@ -28,10 +29,10 @@ const {
     {subtitle && <p class="hero__subtitle">{subtitle}</p>}
     <div class="hero__actions">
       {ctaText && (
-        <a href={ctaLink} class="btn btn--primary">{ctaText}</a>
+        <a href={url(ctaLink)} class="btn btn--primary">{ctaText}</a>
       )}
       {secondaryCta && (
-        <a href={secondaryCta.href} class="btn btn--outline">{secondaryCta.text}</a>
+        <a href={url(secondaryCta.href)} class="btn btn--outline">{secondaryCta.text}</a>
       )}
     </div>
   </div>
