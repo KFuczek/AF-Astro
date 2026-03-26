@@ -1,0 +1,450 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+
+const milestones = [
+  { year: '1998', event: 'ArchiForce founded by Jan Kowalczyk with a team of 6 in Praga, Warsaw.' },
+  { year: '2003', event: 'First major commercial contract — renovation of a 12-storey office block in Śródmieście.' },
+  { year: '2008', event: 'ISO 9001 quality management certification achieved. Team grows to 30 professionals.' },
+  { year: '2013', event: 'Expansion into industrial construction. Completion of our 100th major project.' },
+  { year: '2018', event: '20th anniversary. Over 300 projects completed. New headquarters opened in Ochota.' },
+  { year: '2023', event: 'Launch of our dedicated Project Management division. Team now 50+ strong.' },
+];
+
+const values = [
+  {
+    icon: '🏅',
+    title: 'Quality Without Compromise',
+    text: 'Every nail, joint, and finish is held to the highest standard. We use only certified materials from verified suppliers.',
+  },
+  {
+    icon: '🦺',
+    title: 'Safety First',
+    text: 'Zero-accident culture. All staff undergo regular health & safety training. We are fully compliant with Polish and EU construction regulations.',
+  },
+  {
+    icon: '🤝',
+    title: 'Client Partnership',
+    text: 'We treat every client as a long-term partner. Open communication, regular updates, and no surprises — ever.',
+  },
+  {
+    icon: '🌱',
+    title: 'Sustainable Practices',
+    text: 'Minimising waste, using energy-efficient materials, and working with local suppliers to reduce our environmental footprint.',
+  },
+];
+
+const certifications = [
+  'ISO 9001:2015 Quality Management',
+  'ISO 45001 Occupational Health & Safety',
+  'Polish Construction Chamber Member',
+  'FIDIC Certified Project Managers',
+  'Green Building Certificate (BREEAM)',
+];
+
+const team = [
+  { name: 'Jan Kowalczyk', role: 'Founder & CEO', years: '25+ years' },
+  { name: 'Katarzyna Nowak', role: 'Head of Project Management', years: '18 years' },
+  { name: 'Tomasz Wróblewski', role: 'Chief Structural Engineer', years: '20 years' },
+  { name: 'Magdalena Zielińska', role: 'Interior Design Lead', years: '12 years' },
+  { name: 'Rafał Malinowski', role: 'Health & Safety Director', years: '15 years' },
+  { name: 'Agnieszka Szymańska', role: 'Client Relations Manager', years: '10 years' },
+];
+---
+
+<BaseLayout
+  title="About Us"
+  description="Learn about ArchiForce Construction — our 25-year history, values, certifications, and the expert team behind every project."
+>
+  <Hero
+    title="Building Warsaw's <span>Future</span> Since 1998"
+    subtitle="From a small six-person team to one of Warsaw's leading construction companies — our story is one of steady growth, uncompromising quality, and lasting client relationships."
+    ctaText="Work With Us"
+    ctaLink="/contact"
+  />
+
+  <!-- Story -->
+  <section class="story bg-light">
+    <div class="container story__inner">
+      <div class="story__text">
+        <p class="section-eyebrow">Our Story</p>
+        <h2 class="section-title">25 Years of <span>Craftsmanship</span></h2>
+        <p>
+          ArchiForce Construction was born from a simple belief: that construction should be done properly, honestly, and with pride. Founder Jan Kowalczyk began his career as a structural engineer and spent years watching good projects fail due to poor management, cut corners, and miscommunication. In 1998, he decided to do it differently.
+        </p>
+        <p>
+          Starting with residential renovations in Praga, we built our reputation job by job — always on time, always transparent, always thorough. Word spread. Within five years we were taking on full commercial builds. Within ten, we had a team of certified engineers, project managers, and skilled tradespeople capable of handling projects of any scale.
+        </p>
+        <p>
+          Today, ArchiForce is trusted by private homeowners, property developers, hospitality groups, and public institutions across Poland. Our portfolio spans luxury residential developments, office complexes, hotel refurbishments, and public infrastructure. But our values have never changed.
+        </p>
+      </div>
+
+      <!-- Timeline -->
+      <div class="story__timeline" aria-label="Company milestones">
+        <h3 class="story__timeline-title">Key Milestones</h3>
+        <ol class="timeline">
+          {milestones.map(m => (
+            <li class="timeline__item">
+              <span class="timeline__year">{m.year}</span>
+              <p class="timeline__event">{m.event}</p>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="about-stats">
+    <div class="container about-stats__grid">
+      <div class="about-stats__item">
+        <span class="about-stats__value">1998</span>
+        <span class="about-stats__label">Year Founded</span>
+      </div>
+      <div class="about-stats__item">
+        <span class="about-stats__value">500+</span>
+        <span class="about-stats__label">Projects Delivered</span>
+      </div>
+      <div class="about-stats__item">
+        <span class="about-stats__value">50+</span>
+        <span class="about-stats__label">Team Members</span>
+      </div>
+      <div class="about-stats__item">
+        <span class="about-stats__value">5</span>
+        <span class="about-stats__label">Industry Certifications</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Values -->
+  <section class="values bg-light">
+    <div class="container">
+      <div class="section-header section-header--centered">
+        <p class="section-eyebrow">What Drives Us</p>
+        <h2 class="section-title">Our Core <span>Values</span></h2>
+        <p class="section-subtitle">Every decision we make is guided by four founding principles.</p>
+      </div>
+      <div class="values__grid">
+        {values.map(v => (
+          <div class="value-card">
+            <span class="value-card__icon" aria-hidden="true">{v.icon}</span>
+            <h3 class="value-card__title">{v.title}</h3>
+            <p class="value-card__text">{v.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Team -->
+  <section class="team">
+    <div class="container">
+      <div class="section-header section-header--centered">
+        <p class="section-eyebrow">The People</p>
+        <h2 class="section-title">Meet the <span>Leadership Team</span></h2>
+        <p class="section-subtitle">Experienced professionals who lead from the front on every project.</p>
+      </div>
+      <div class="team__grid">
+        {team.map(member => (
+          <div class="team-card">
+            <div class="team-card__avatar" aria-hidden="true">
+              {member.name.split(' ').map(n => n[0]).join('')}
+            </div>
+            <div class="team-card__info">
+              <strong class="team-card__name">{member.name}</strong>
+              <span class="team-card__role">{member.role}</span>
+              <span class="team-card__years">{member.years} experience</span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Certifications -->
+  <section class="certs bg-dark">
+    <div class="container">
+      <div class="section-header section-header--centered">
+        <p class="section-eyebrow" style="color: #f0a500">Credentials</p>
+        <h2 class="section-title" style="color: white">Certifications &amp; <span>Accreditations</span></h2>
+      </div>
+      <ul class="certs__list" role="list">
+        {certifications.map(cert => (
+          <li class="certs__item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f0a500" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            {cert}
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+</BaseLayout>
+
+<style lang="scss">
+  @use '../styles/variables' as *;
+
+  // ── Story ──────────────────────────────────────────────────────────────────
+  .story {
+    &__inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: $spacing-2xl;
+      align-items: start;
+
+      @media (max-width: #{$bp-lg}) {
+        grid-template-columns: 1fr;
+        gap: $spacing-xl;
+      }
+    }
+
+    &__text {
+      p {
+        color: $color-gray;
+        line-height: 1.8;
+        margin-bottom: $spacing-md;
+
+        &:last-child { margin-bottom: 0; }
+      }
+    }
+
+    &__timeline-title {
+      font-size: $font-size-lg;
+      color: $color-dark;
+      margin-bottom: $spacing-md;
+    }
+  }
+
+  .timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+
+    &__item {
+      display: grid;
+      grid-template-columns: 72px 1fr;
+      gap: $spacing-sm;
+      padding-bottom: $spacing-md;
+      position: relative;
+
+      &::before {
+        content: '';
+        position: absolute;
+        left: 36px;
+        top: 8px;
+        bottom: 0;
+        width: 2px;
+        background-color: $color-gray-light;
+      }
+
+      &:last-child::before { display: none; }
+
+      &::after {
+        content: '';
+        position: absolute;
+        left: 30px;
+        top: 6px;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background-color: $color-accent;
+        border: 2px solid $color-white;
+        box-shadow: 0 0 0 2px $color-accent;
+      }
+    }
+
+    &__year {
+      font-weight: 800;
+      font-size: $font-size-sm;
+      color: $color-accent;
+      text-align: right;
+      padding-right: $spacing-sm;
+      padding-top: 3px;
+    }
+
+    &__event {
+      font-size: $font-size-sm;
+      color: $color-gray;
+      line-height: 1.6;
+      padding-top: 3px;
+    }
+  }
+
+  // ── Stats ──────────────────────────────────────────────────────────────────
+  .about-stats {
+    background-color: $color-dark;
+    padding-block: $spacing-xl;
+
+    &__grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: $spacing-md;
+      text-align: center;
+
+      @media (max-width: #{$bp-md}) {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    &__item {
+      padding: $spacing-sm;
+    }
+
+    &__value {
+      display: block;
+      font-size: $font-size-4xl;
+      font-weight: 800;
+      color: $color-accent;
+      margin-bottom: 0.25rem;
+    }
+
+    &__label {
+      font-size: $font-size-sm;
+      color: rgba($color-white, 0.6);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+  }
+
+  // ── Values ─────────────────────────────────────────────────────────────────
+  .values__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: $spacing-md;
+
+    @media (max-width: #{$bp-lg}) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: #{$bp-sm}) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .value-card {
+    background-color: $color-white;
+    border: 1px solid $color-gray-light;
+    border-radius: $radius-md;
+    padding: $spacing-lg $spacing-md;
+    text-align: center;
+    transition: transform $transition-slow, box-shadow $transition-slow;
+
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: $shadow-md;
+    }
+
+    &__icon {
+      display: block;
+      font-size: 2.2rem;
+      margin-bottom: $spacing-sm;
+    }
+
+    &__title {
+      font-size: $font-size-lg;
+      color: $color-dark;
+      margin-bottom: $spacing-xs;
+    }
+
+    &__text {
+      font-size: $font-size-sm;
+      color: $color-gray;
+      line-height: 1.7;
+    }
+  }
+
+  // ── Team ───────────────────────────────────────────────────────────────────
+  .team__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: $spacing-md;
+
+    @media (max-width: #{$bp-md}) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: #{$bp-sm}) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .team-card {
+    display: flex;
+    align-items: center;
+    gap: $spacing-md;
+    background-color: $color-light;
+    border: 1px solid $color-gray-light;
+    border-radius: $radius-md;
+    padding: $spacing-md;
+    transition: box-shadow $transition-slow, border-color $transition-slow;
+
+    &:hover {
+      box-shadow: $shadow-md;
+      border-color: $color-accent;
+    }
+
+    &__avatar {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background-color: $color-dark;
+      color: $color-accent;
+      font-weight: 800;
+      font-size: $font-size-sm;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    &__info {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+
+    &__name {
+      font-size: $font-size-base;
+      color: $color-dark;
+    }
+
+    &__role {
+      font-size: $font-size-sm;
+      color: $color-gray;
+    }
+
+    &__years {
+      font-size: $font-size-xs;
+      color: $color-accent;
+      font-weight: 600;
+    }
+  }
+
+  // ── Certifications ─────────────────────────────────────────────────────────
+  .certs {
+    &__list {
+      display: flex;
+      flex-direction: column;
+      gap: $spacing-sm;
+      max-width: 640px;
+      margin-inline: auto;
+    }
+
+    &__item {
+      display: flex;
+      align-items: center;
+      gap: $spacing-sm;
+      color: rgba($color-white, 0.8);
+      font-size: $font-size-base;
+      background-color: rgba($color-white, 0.04);
+      border: 1px solid rgba($color-white, 0.08);
+      border-radius: $radius-md;
+      padding: $spacing-sm $spacing-md;
+      transition: background-color $transition-base;
+
+      &:hover {
+        background-color: rgba($color-white, 0.07);
+      }
+    }
+  }
+</style>

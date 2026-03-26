@@ -1,0 +1,470 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+
+const contactDetails = [
+  {
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>`,
+    title: 'Visit Us',
+    lines: ['48 Industrial Avenue', 'Warsaw, 00-001, Poland'],
+  },
+  {
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.28h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.37a16 16 0 0 0 6.34 6.34l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>`,
+    title: 'Call Us',
+    lines: ['+48 22 123 45 67', 'Mon–Fri: 7:00 AM – 6:00 PM'],
+    link: { href: 'tel:+48221234567', text: '+48 22 123 45 67' },
+  },
+  {
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>`,
+    title: 'Email Us',
+    lines: ['info@archiforce.pl', 'We reply within 24 hours'],
+    link: { href: 'mailto:info@archiforce.pl', text: 'info@archiforce.pl' },
+  },
+  {
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>`,
+    title: 'Working Hours',
+    lines: ['Monday – Friday: 7:00 AM – 6:00 PM', 'Saturday: 8:00 AM – 2:00 PM'],
+  },
+];
+---
+
+<BaseLayout
+  title="Contact"
+  description="Contact ArchiForce Construction for a free, no-obligation quote. Phone, email, or use our online form. We respond within 24 hours."
+>
+  <Hero
+    title="Let's Talk About <span>Your Project</span>"
+    subtitle="Ready to build? Have a question? Our team is always happy to discuss your needs. Fill in the form or reach us directly — we respond within 24 hours."
+    ctaText="Call Us Now"
+    ctaLink="tel:+48221234567"
+  />
+
+  <!-- Contact Section -->
+  <section class="contact-section">
+    <div class="container contact-section__inner">
+
+      <!-- Info Panel -->
+      <aside class="contact-info" aria-label="Contact information">
+        <h2 class="contact-info__title">Get in Touch</h2>
+        <p class="contact-info__intro">
+          Whether you have a fully detailed specification or just a rough idea, we're here to help you take the next step. All initial consultations are free with no obligation.
+        </p>
+
+        <div class="contact-info__details">
+          {contactDetails.map(detail => (
+            <div class="contact-detail">
+              <div class="contact-detail__icon" aria-hidden="true" set:html={detail.icon} />
+              <div class="contact-detail__body">
+                <strong class="contact-detail__title">{detail.title}</strong>
+                {detail.lines.map((line, i) => (
+                  detail.link && i === 0
+                    ? <a href={detail.link.href} class="contact-detail__link">{line}</a>
+                    : <span class="contact-detail__line">{line}</span>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div class="contact-info__promise">
+          <p>
+            <strong>Our promise:</strong> You'll hear back from a named member of our team — not a call centre — within 24 working hours.
+          </p>
+        </div>
+      </aside>
+
+      <!-- Form -->
+      <div class="contact-form-wrapper">
+        <h2 class="contact-form-wrapper__title">Send Us a Message</h2>
+        <form
+          class="contact-form"
+          id="contact-form"
+          novalidate
+          aria-label="Contact form"
+        >
+          <div class="contact-form__row">
+            <div class="form-field">
+              <label for="name" class="form-field__label">Full Name <span aria-hidden="true">*</span></label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                class="form-field__input"
+                placeholder="Jan Kowalski"
+                required
+                autocomplete="name"
+              />
+              <span class="form-field__error" id="name-error" role="alert"></span>
+            </div>
+            <div class="form-field">
+              <label for="email" class="form-field__label">Email Address <span aria-hidden="true">*</span></label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                class="form-field__input"
+                placeholder="jan@example.com"
+                required
+                autocomplete="email"
+              />
+              <span class="form-field__error" id="email-error" role="alert"></span>
+            </div>
+          </div>
+
+          <div class="form-field">
+            <label for="phone" class="form-field__label">Phone Number</label>
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              class="form-field__input"
+              placeholder="+48 __ ___ __ __"
+              autocomplete="tel"
+            />
+          </div>
+
+          <div class="form-field">
+            <label for="service" class="form-field__label">Service Required</label>
+            <select id="service" name="service" class="form-field__input form-field__select">
+              <option value="">— Select a service —</option>
+              <option>General Construction</option>
+              <option>Renovations & Refurbishments</option>
+              <option>Interior Finishing</option>
+              <option>Roofing & Waterproofing</option>
+              <option>Electrical & Plumbing</option>
+              <option>Project Management & Consulting</option>
+              <option>Other / Not sure yet</option>
+            </select>
+          </div>
+
+          <div class="form-field">
+            <label for="message" class="form-field__label">Your Message <span aria-hidden="true">*</span></label>
+            <textarea
+              id="message"
+              name="message"
+              class="form-field__input form-field__textarea"
+              placeholder="Tell us about your project — location, scope, timeline, and any other details that would help us prepare a quote..."
+              rows="6"
+              required
+            ></textarea>
+            <span class="form-field__error" id="message-error" role="alert"></span>
+          </div>
+
+          <div class="form-field form-field--checkbox">
+            <label class="form-field__checkbox-label">
+              <input type="checkbox" name="consent" required />
+              <span>I agree to ArchiForce processing my data to respond to this enquiry. <span aria-hidden="true">*</span></span>
+            </label>
+          </div>
+
+          <button type="submit" class="btn btn--primary contact-form__submit">
+            Send Message
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </button>
+
+          <div class="contact-form__success" id="form-success" aria-live="polite" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            <p><strong>Message sent!</strong> Thank you — a member of our team will be in touch within 24 hours.</p>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement | null;
+  const successMsg = document.getElementById('form-success');
+
+  function showError(inputId: string, message: string) {
+    const errorEl = document.getElementById(`${inputId}-error`);
+    const inputEl = document.getElementById(inputId);
+    if (errorEl) errorEl.textContent = message;
+    inputEl?.classList.add('form-field__input--error');
+  }
+
+  function clearError(inputId: string) {
+    const errorEl = document.getElementById(`${inputId}-error`);
+    const inputEl = document.getElementById(inputId);
+    if (errorEl) errorEl.textContent = '';
+    inputEl?.classList.remove('form-field__input--error');
+  }
+
+  // Live validation
+  ['name', 'email', 'message'].forEach(id => {
+    document.getElementById(id)?.addEventListener('input', () => clearError(id));
+  });
+
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    let valid = true;
+
+    const name    = (document.getElementById('name')    as HTMLInputElement)?.value.trim();
+    const email   = (document.getElementById('email')   as HTMLInputElement)?.value.trim();
+    const message = (document.getElementById('message') as HTMLTextAreaElement)?.value.trim();
+
+    if (!name) {
+      showError('name', 'Please enter your full name.');
+      valid = false;
+    } else {
+      clearError('name');
+    }
+
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      showError('email', 'Please enter a valid email address.');
+      valid = false;
+    } else {
+      clearError('email');
+    }
+
+    if (!message || message.length < 10) {
+      showError('message', 'Please enter a message (minimum 10 characters).');
+      valid = false;
+    } else {
+      clearError('message');
+    }
+
+    if (valid) {
+      form.style.display = 'none';
+      if (successMsg) successMsg.hidden = false;
+    }
+  });
+</script>
+
+<style lang="scss">
+  @use '../styles/variables' as *;
+
+  // ── Layout ─────────────────────────────────────────────────────────────────
+  .contact-section {
+    &__inner {
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: $spacing-2xl;
+      align-items: start;
+
+      @media (max-width: #{$bp-lg}) {
+        grid-template-columns: 1fr;
+        gap: $spacing-xl;
+      }
+    }
+  }
+
+  // ── Info Panel ─────────────────────────────────────────────────────────────
+  .contact-info {
+    &__title {
+      font-size: $font-size-2xl;
+      color: $color-dark;
+      margin-bottom: $spacing-sm;
+    }
+
+    &__intro {
+      color: $color-gray;
+      font-size: $font-size-sm;
+      line-height: 1.75;
+      margin-bottom: $spacing-xl;
+    }
+
+    &__details {
+      display: flex;
+      flex-direction: column;
+      gap: $spacing-md;
+      margin-bottom: $spacing-xl;
+    }
+
+    &__promise {
+      background-color: $color-dark;
+      border-left: 4px solid $color-accent;
+      border-radius: $radius-sm;
+      padding: $spacing-md;
+      font-size: $font-size-sm;
+      color: rgba($color-white, 0.8);
+      line-height: 1.7;
+
+      strong { color: $color-accent; }
+    }
+  }
+
+  .contact-detail {
+    display: flex;
+    gap: $spacing-sm;
+    align-items: flex-start;
+
+    &__icon {
+      width: 44px;
+      height: 44px;
+      background-color: $color-light;
+      border: 1px solid $color-gray-light;
+      border-radius: $radius-md;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: $color-accent;
+    }
+
+    &__body {
+      display: flex;
+      flex-direction: column;
+      gap: 0.15rem;
+      padding-top: 2px;
+    }
+
+    &__title {
+      font-size: $font-size-sm;
+      font-weight: 700;
+      color: $color-dark;
+    }
+
+    &__line {
+      font-size: $font-size-sm;
+      color: $color-gray;
+    }
+
+    &__link {
+      font-size: $font-size-sm;
+      color: $color-accent;
+      font-weight: 600;
+      transition: color $transition-base;
+
+      &:hover { color: $color-accent-dark; }
+    }
+  }
+
+  // ── Form ───────────────────────────────────────────────────────────────────
+  .contact-form-wrapper {
+    background-color: $color-light;
+    border: 1px solid $color-gray-light;
+    border-radius: $radius-md;
+    padding: $spacing-xl;
+
+    &__title {
+      font-size: $font-size-2xl;
+      color: $color-dark;
+      margin-bottom: $spacing-lg;
+    }
+  }
+
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-md;
+
+    &__row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: $spacing-md;
+
+      @media (max-width: #{$bp-sm}) {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    &__submit {
+      align-self: flex-start;
+      padding: 0.9rem 2.2rem;
+    }
+
+    &__success {
+      display: flex;
+      align-items: center;
+      gap: $spacing-sm;
+      background-color: #d4edda;
+      border: 1px solid #c3e6cb;
+      border-radius: $radius-md;
+      padding: $spacing-md;
+      color: #155724;
+
+      svg { flex-shrink: 0; color: #28a745; }
+
+      p { font-size: $font-size-sm; line-height: 1.5; }
+    }
+  }
+
+  // ── Form Fields ────────────────────────────────────────────────────────────
+  .form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+
+    &__label {
+      font-size: $font-size-sm;
+      font-weight: 600;
+      color: $color-dark;
+
+      span { color: $color-accent; margin-left: 2px; }
+    }
+
+    &__input {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 1.5px solid $color-gray-light;
+      border-radius: $radius-sm;
+      background-color: $color-white;
+      color: $color-text;
+      font-size: $font-size-base;
+      transition: border-color $transition-base, box-shadow $transition-base;
+      appearance: none;
+
+      &::placeholder { color: rgba($color-gray, 0.6); }
+
+      &:focus {
+        outline: none;
+        border-color: $color-accent;
+        box-shadow: 0 0 0 3px rgba($color-accent, 0.15);
+      }
+
+      &--error {
+        border-color: #dc3545;
+
+        &:focus {
+          box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.15);
+        }
+      }
+    }
+
+    &__select {
+      cursor: pointer;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236b6b6b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 1rem center;
+      padding-right: 2.5rem;
+    }
+
+    &__textarea {
+      resize: vertical;
+      min-height: 140px;
+    }
+
+    &__error {
+      font-size: $font-size-xs;
+      color: #dc3545;
+      min-height: 1rem;
+    }
+
+    &--checkbox {
+      flex-direction: row;
+      align-items: flex-start;
+      gap: $spacing-xs;
+    }
+
+    &__checkbox-label {
+      display: flex;
+      align-items: flex-start;
+      gap: $spacing-xs;
+      font-size: $font-size-sm;
+      color: $color-gray;
+      cursor: pointer;
+      line-height: 1.5;
+
+      input[type="checkbox"] {
+        margin-top: 3px;
+        flex-shrink: 0;
+        width: 16px;
+        height: 16px;
+        accent-color: $color-accent;
+        cursor: pointer;
+      }
+    }
+  }
+</style>

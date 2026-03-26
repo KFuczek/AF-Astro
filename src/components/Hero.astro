@@ -1,0 +1,152 @@
+---
+interface Props {
+  title: string;
+  subtitle?: string;
+  ctaText?: string;
+  ctaLink?: string;
+  secondaryCta?: { text: string; href: string };
+  size?: 'normal' | 'large';
+}
+
+const {
+  title,
+  subtitle,
+  ctaText,
+  ctaLink = '/contact',
+  secondaryCta,
+  size = 'normal',
+} = Astro.props;
+---
+
+<section class={`hero hero--${size}`} aria-label="Page hero">
+  <div class="hero__backdrop" aria-hidden="true"></div>
+  <div class="container hero__content">
+    <p class="hero__eyebrow">ArchiForce Construction</p>
+    <h1 class="hero__title" set:html={title} />
+    {subtitle && <p class="hero__subtitle">{subtitle}</p>}
+    <div class="hero__actions">
+      {ctaText && (
+        <a href={ctaLink} class="btn btn--primary">{ctaText}</a>
+      )}
+      {secondaryCta && (
+        <a href={secondaryCta.href} class="btn btn--outline">{secondaryCta.text}</a>
+      )}
+    </div>
+  </div>
+</section>
+
+<style lang="scss">
+  @use '../styles/variables' as *;
+
+  .hero {
+    position: relative;
+    background-color: $color-dark;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+
+    &--normal {
+      min-height: 380px;
+      padding-block: $spacing-2xl;
+    }
+
+    &--large {
+      min-height: 620px;
+      padding-block: $spacing-2xl;
+
+      @media (max-width: #{$bp-md}) {
+        min-height: 480px;
+      }
+    }
+
+    // ── Decorative backdrop ─────────────────────────────────────────────────
+    &__backdrop {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        135deg,
+        rgba($color-dark, 0.98) 40%,
+        rgba($color-dark-secondary, 0.92) 100%
+      );
+
+      // Subtle grid pattern
+      &::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background-image:
+          repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 48px,
+            rgba($color-accent, 0.04) 48px,
+            rgba($color-accent, 0.04) 50px
+          ),
+          repeating-linear-gradient(
+            90deg,
+            transparent,
+            transparent 48px,
+            rgba($color-accent, 0.04) 48px,
+            rgba($color-accent, 0.04) 50px
+          );
+      }
+
+      // Radial glow accent (top-right)
+      &::after {
+        content: '';
+        position: absolute;
+        right: -80px;
+        top: -80px;
+        width: 560px;
+        height: 560px;
+        background: radial-gradient(
+          circle,
+          rgba($color-accent, 0.1) 0%,
+          transparent 65%
+        );
+        pointer-events: none;
+      }
+    }
+
+    // ── Content ─────────────────────────────────────────────────────────────
+    &__content {
+      position: relative;
+      z-index: 1;
+      max-width: 740px;
+    }
+
+    &__eyebrow {
+      font-size: $font-size-sm;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2.5px;
+      color: $color-accent;
+      margin-bottom: $spacing-sm;
+    }
+
+    &__title {
+      font-size: clamp($font-size-3xl, 5vw, $font-size-5xl);
+      color: $color-white;
+      line-height: 1.08;
+      margin-bottom: $spacing-md;
+
+      :global(span) {
+        color: $color-accent;
+      }
+    }
+
+    &__subtitle {
+      color: rgba($color-white, 0.72);
+      font-size: clamp($font-size-base, 2vw, $font-size-lg);
+      line-height: 1.75;
+      margin-bottom: $spacing-xl;
+      max-width: 580px;
+    }
+
+    &__actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: $spacing-sm;
+    }
+  }
+</style>

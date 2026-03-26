@@ -1,0 +1,255 @@
+---
+const navLinks = [
+  { href: '/',         label: 'Home' },
+  { href: '/about',    label: 'About' },
+  { href: '/services', label: 'Services' },
+  { href: '/projects', label: 'Projects' },
+  { href: '/contact',  label: 'Contact' },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<header class="navbar">
+  <div class="container navbar__inner">
+    <a href="/" class="navbar__logo" aria-label="ArchiForce – go to home">
+      <span class="navbar__logo-badge">AF</span>
+      <span class="navbar__logo-name">ArchiForce</span>
+    </a>
+
+    <nav class="navbar__nav" id="navbar-nav" aria-label="Main navigation">
+      <ul class="navbar__links" role="list">
+        {navLinks.map(link => (
+          <li>
+            <a
+              href={link.href}
+              class:list={[
+                'navbar__link',
+                {
+                  'navbar__link--active':
+                    link.href === '/'
+                      ? currentPath === '/'
+                      : currentPath.startsWith(link.href),
+                },
+              ]}
+            >
+              {link.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+
+    <a href="/contact" class="btn btn--primary navbar__cta">Get a Quote</a>
+
+    <button
+      class="navbar__hamburger"
+      id="navbar-hamburger"
+      aria-label="Toggle navigation menu"
+      aria-expanded="false"
+      aria-controls="navbar-nav"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</header>
+
+<script>
+  const hamburger = document.getElementById('navbar-hamburger');
+  const nav       = document.getElementById('navbar-nav');
+
+  hamburger?.addEventListener('click', () => {
+    const isOpen = nav?.classList.toggle('navbar__nav--open');
+    hamburger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    hamburger.classList.toggle('navbar__hamburger--open', isOpen);
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+  });
+
+  // Close menu on navigation
+  nav?.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      nav.classList.remove('navbar__nav--open');
+      hamburger?.classList.remove('navbar__hamburger--open');
+      hamburger?.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    });
+  });
+
+  // Close on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && nav?.classList.contains('navbar__nav--open')) {
+      nav.classList.remove('navbar__nav--open');
+      hamburger?.classList.remove('navbar__hamburger--open');
+      hamburger?.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    }
+  });
+</script>
+
+<style lang="scss">
+  @use '../styles/variables' as *;
+
+  .navbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: $color-dark;
+    border-bottom: 3px solid $color-accent;
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.3);
+
+    &__inner {
+      display: flex;
+      align-items: center;
+      gap: $spacing-sm;
+      height: 72px;
+    }
+
+    // ── Logo ────────────────────────────────────────────────────────────────
+    &__logo {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      flex-shrink: 0;
+      transition: opacity $transition-base;
+
+      &:hover { opacity: 0.85; }
+    }
+
+    &__logo-badge {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background-color: $color-accent;
+      color: $color-dark;
+      font-weight: 800;
+      font-size: 0.8rem;
+      border-radius: $radius-sm;
+      flex-shrink: 0;
+      letter-spacing: 0.5px;
+    }
+
+    &__logo-name {
+      font-size: $font-size-xl;
+      font-weight: 700;
+      color: $color-white;
+      letter-spacing: -0.5px;
+    }
+
+    // ── Nav ─────────────────────────────────────────────────────────────────
+    &__nav {
+      margin-left: auto;
+    }
+
+    &__links {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    &__link {
+      color: rgba($color-white, 0.75);
+      font-weight: 500;
+      font-size: $font-size-sm;
+      padding: 0.45rem 0.8rem;
+      border-radius: $radius-sm;
+      transition: color $transition-base, background-color $transition-base;
+
+      &:hover,
+      &:focus-visible {
+        color: $color-white;
+        background-color: rgba($color-white, 0.1);
+        outline: none;
+      }
+
+      &--active {
+        color: $color-accent;
+        font-weight: 600;
+      }
+    }
+
+    // ── CTA ─────────────────────────────────────────────────────────────────
+    &__cta {
+      margin-left: $spacing-sm;
+      padding: 0.55rem 1.25rem;
+      font-size: $font-size-sm;
+      flex-shrink: 0;
+    }
+
+    // ── Hamburger ───────────────────────────────────────────────────────────
+    &__hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 24px;
+      height: 18px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      flex-shrink: 0;
+
+      span {
+        display: block;
+        height: 2px;
+        width: 100%;
+        background-color: $color-white;
+        border-radius: 2px;
+        transition: transform $transition-base, opacity $transition-base;
+        transform-origin: center;
+      }
+
+      &--open {
+        span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+        span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+        span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+      }
+    }
+
+    // ── Mobile ──────────────────────────────────────────────────────────────
+    @media (max-width: #{$bp-md}) {
+      &__hamburger {
+        display: flex;
+        margin-left: auto;
+      }
+
+      &__cta {
+        display: none;
+      }
+
+      &__nav {
+        display: none;
+        position: fixed;
+        top: 75px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: $color-dark;
+        padding: $spacing-md $container-padding;
+        border-top: 1px solid rgba($color-white, 0.1);
+        overflow-y: auto;
+        margin: 0;
+
+        &--open {
+          display: block;
+        }
+      }
+
+      &__links {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.25rem;
+      }
+
+      &__link {
+        display: block;
+        padding: 0.9rem $spacing-sm;
+        font-size: $font-size-lg;
+        border-bottom: 1px solid rgba($color-white, 0.06);
+      }
+    }
+  }
+</style>

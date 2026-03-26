@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <rect width="32" height="32" rx="5" fill="#1c1c1c"/>
+  <rect x="0" y="27" width="32" height="5" rx="2" fill="#f0a500"/>
+  <text
+    x="16" y="22"
+    font-family="Arial, sans-serif"
+    font-weight="800"
+    font-size="13"
+    text-anchor="middle"
+    fill="#f0a500"
+  >AF</text>
+</svg>

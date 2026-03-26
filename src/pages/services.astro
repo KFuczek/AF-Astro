@@ -1,0 +1,223 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+
+const services = [
+  {
+    icon: '🏗️',
+    title: 'General Construction',
+    description: 'Full-cycle new-build projects from groundworks and foundations through to structural frame, envelope, and handover. We manage residential blocks, commercial units, and industrial facilities with equal rigour.',
+  },
+  {
+    icon: '🔨',
+    title: 'Renovations & Refurbishments',
+    description: 'Sympathetic restoration and modern refurbishment of existing buildings. Whether it\'s a heritage property requiring careful intervention or an ageing office block needing a complete overhaul, we deliver with minimal disruption.',
+  },
+  {
+    icon: '🪟',
+    title: 'Interior Finishing',
+    description: 'High-quality plastering, screed flooring, tiling, painting, and fitted joinery. We work closely with interior designers and clients to ensure finishes meet the exact brief — on time and to specification.',
+  },
+  {
+    icon: '🏠',
+    title: 'Roofing & Waterproofing',
+    description: 'Flat and pitched roof installations, re-roofing, insulation upgrades, and full waterproofing systems. We use certified materials and our workmanship carries a 10-year guarantee.',
+  },
+  {
+    icon: '⚡',
+    title: 'Electrical & Plumbing Installation',
+    description: 'Full MEP (Mechanical, Electrical, Plumbing) services carried out by certified installers. From single-phase domestic wiring to three-phase commercial systems, boiler installations to full HVAC fit-outs.',
+  },
+  {
+    icon: '📋',
+    title: 'Project Management & Consulting',
+    description: 'Not ready to build yet? Our experienced project managers can help you plan, budget, obtain permits, and select the right contractors. Independent consulting from people who know construction inside out.',
+  },
+];
+
+const process = [
+  { step: '01', title: 'Initial Consultation', text: 'We meet on-site or online to understand your goals, timeline, and budget. No obligation, no cost.' },
+  { step: '02', title: 'Detailed Quote', text: 'Within 48 hours, you receive a comprehensive, itemised quote with no hidden extras.' },
+  { step: '03', title: 'Project Planning', text: 'We develop a detailed programme, assign your project manager, and agree on milestones.' },
+  { step: '04', title: 'Construction', text: 'Works begin. You receive weekly progress reports and have direct access to your PM at all times.' },
+  { step: '05', title: 'Quality Inspection', text: 'Every stage is inspected before sign-off. Nothing moves forward unless it meets our standard.' },
+  { step: '06', title: 'Handover & Aftercare', text: 'You receive a full completion report, all warranties, and 12 months of dedicated aftercare support.' },
+];
+---
+
+<BaseLayout
+  title="Services"
+  description="ArchiForce Construction offers general construction, renovations, interior finishing, roofing, electrical and plumbing installation, and project management across Poland."
+>
+  <Hero
+    title="Professional Construction <span>Services</span>"
+    subtitle="From the first shovel in the ground to the final coat of paint — ArchiForce offers a complete range of construction services, all under one roof."
+    ctaText="Request a Quote"
+    ctaLink="/contact"
+  />
+
+  <!-- Services Grid -->
+  <section class="services-list">
+    <div class="container">
+      <div class="section-header section-header--centered">
+        <p class="section-eyebrow">What We Offer</p>
+        <h2 class="section-title">Our <span>Six Core Services</span></h2>
+        <p class="section-subtitle">Each service is backed by certified professionals, transparent pricing, and our quality guarantee.</p>
+      </div>
+      <div class="services-list__grid">
+        {services.map(s => (
+          <ServiceCard title={s.title} description={s.description} icon={s.icon} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section class="process bg-light">
+    <div class="container">
+      <div class="section-header section-header--centered">
+        <p class="section-eyebrow">How We Work</p>
+        <h2 class="section-title">Our <span>Process</span></h2>
+        <p class="section-subtitle">A clear, structured approach from first contact to final handover.</p>
+      </div>
+      <div class="process__grid">
+        {process.map(p => (
+          <div class="process-step">
+            <span class="process-step__number">{p.step}</span>
+            <h3 class="process-step__title">{p.title}</h3>
+            <p class="process-step__text">{p.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Guarantee Banner -->
+  <section class="guarantee bg-dark">
+    <div class="container guarantee__inner">
+      <div class="guarantee__icon" aria-hidden="true">🛡️</div>
+      <div class="guarantee__content">
+        <h2 class="guarantee__title">Our Quality Guarantee</h2>
+        <p class="guarantee__text">
+          All structural works carry a 5-year warranty. Roofing and waterproofing are guaranteed for 10 years. Interior finishes are covered for 2 years. If anything is not right, we come back and fix it — at no extra charge.
+        </p>
+      </div>
+      <a href="/contact" class="btn btn--primary guarantee__cta">Get a Free Quote</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style lang="scss">
+  @use '../styles/variables' as *;
+
+  // ── Services Grid ──────────────────────────────────────────────────────────
+  .services-list__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: $spacing-md;
+
+    @media (max-width: #{$bp-lg}) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: #{$bp-sm}) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  // ── Process ────────────────────────────────────────────────────────────────
+  .process__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: $spacing-md;
+    counter-reset: step;
+
+    @media (max-width: #{$bp-lg}) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: #{$bp-sm}) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .process-step {
+    background-color: $color-white;
+    border: 1px solid $color-gray-light;
+    border-radius: $radius-md;
+    padding: $spacing-lg $spacing-md;
+    position: relative;
+    transition: transform $transition-slow, box-shadow $transition-slow;
+
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: $shadow-md;
+    }
+
+    &__number {
+      display: inline-block;
+      font-size: $font-size-3xl;
+      font-weight: 800;
+      color: $color-accent;
+      opacity: 0.3;
+      line-height: 1;
+      margin-bottom: $spacing-sm;
+    }
+
+    &__title {
+      font-size: $font-size-lg;
+      color: $color-dark;
+      margin-bottom: $spacing-xs;
+    }
+
+    &__text {
+      font-size: $font-size-sm;
+      color: $color-gray;
+      line-height: 1.7;
+    }
+  }
+
+  // ── Guarantee ──────────────────────────────────────────────────────────────
+  .guarantee {
+    padding-block: $spacing-xl;
+
+    &__inner {
+      display: flex;
+      align-items: center;
+      gap: $spacing-xl;
+      flex-wrap: wrap;
+
+      @media (max-width: #{$bp-md}) {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    &__icon {
+      font-size: 3.5rem;
+      flex-shrink: 0;
+    }
+
+    &__content {
+      flex: 1;
+    }
+
+    &__title {
+      font-size: $font-size-2xl;
+      color: $color-white;
+      margin-bottom: $spacing-xs;
+    }
+
+    &__text {
+      color: rgba($color-white, 0.72);
+      font-size: $font-size-sm;
+      line-height: 1.75;
+      max-width: 580px;
+    }
+
+    &__cta {
+      flex-shrink: 0;
+    }
+  }
+</style>

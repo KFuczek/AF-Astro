@@ -1,0 +1,190 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+
+const projects = [
+  {
+    title: 'Złota Tower Office Complex',
+    description: 'Complete fit-out and structural refurbishment of a 14-storey office building in Warsaw city centre. Scope included full MEP upgrade, new curtain wall glazing, and Grade A interior finishing across 8,400 m².',
+    category: 'Commercial',
+    location: 'Warsaw, Śródmieście',
+    year: 2023,
+    bgColor: '#1e3a5f',
+  },
+  {
+    title: 'Green Hills Residential Estate',
+    description: 'New-build development of 48 family homes across 3 phases. Delivered in 18 months from groundworks to final handover, including landscaping, road infrastructure, and all utilities connections.',
+    category: 'Residential',
+    location: 'Kraków, Bronowice',
+    year: 2022,
+    bgColor: '#1e4d2b',
+  },
+  {
+    title: 'Central Station Concourse Renovation',
+    description: 'Major public infrastructure renovation of the main passenger concourse — 2,200 m² of flooring, new passenger information systems, accessibility upgrades, and full roof waterproofing works.',
+    category: 'Public Works',
+    location: 'Warsaw, Śródmieście',
+    year: 2022,
+    bgColor: '#3a3a3a',
+  },
+  {
+    title: 'Waterfront Hotel & Spa',
+    description: 'Full construction of a 4-star, 120-room hotel with spa facilities, conference centre, and rooftop bar. Project managed from planning permission through to opening, in 22 months.',
+    category: 'Hospitality',
+    location: 'Gdańsk, Waterfront',
+    year: 2021,
+    bgColor: '#4a2020',
+  },
+  {
+    title: 'University Science & Innovation Centre',
+    description: 'Design-and-build contract for a 6,000 m² research and teaching facility. Specialised laboratory fit-outs, lecture theatres, and sustainable design elements including a green roof and solar array.',
+    category: 'Education',
+    location: 'Wrocław, Kampus',
+    year: 2023,
+    bgColor: '#1e3d4a',
+  },
+  {
+    title: 'City Park Retail & Leisure Complex',
+    description: 'Ground-up construction of a 15,000 m² mixed-use retail and leisure complex. Includes 42 retail units, 8 restaurant units, a 10-screen cinema, and 600-space underground car park.',
+    category: 'Retail',
+    location: 'Łódź, Bałuty',
+    year: 2021,
+    bgColor: '#3d2a1e',
+  },
+  {
+    title: 'Stara Fabryka Loft Conversion',
+    description: 'Conversion of a historic 19th-century textile factory into 64 premium residential loft apartments. Careful heritage preservation combined with modern luxury finishes and smart home technology.',
+    category: 'Residential',
+    location: 'Łódź, Stare Miasto',
+    year: 2022,
+    bgColor: '#2a1e3d',
+  },
+  {
+    title: 'Logistic Hub North',
+    description: 'New-build industrial logistics facility — 22,000 m² warehouse with dock levellers, office wing, and full site infrastructure. Steel frame construction completed in under 10 months.',
+    category: 'Industrial',
+    location: 'Warsaw, Białołęka',
+    year: 2023,
+    bgColor: '#1e2d1e',
+  },
+  {
+    title: 'Riverside Medical Centre',
+    description: 'Purpose-built two-storey outpatient medical facility with specialist clinical fit-out, operating suites, imaging department, and patient-accessible public realm improvements.',
+    category: 'Healthcare',
+    location: 'Poznań, Jeżyce',
+    year: 2022,
+    bgColor: '#1a2e3f',
+  },
+];
+---
+
+<BaseLayout
+  title="Projects"
+  description="Browse ArchiForce Construction's completed projects — office complexes, residential estates, hotel refurbishments, public infrastructure, and more across Poland."
+>
+  <Hero
+    title="Projects That <span>Speak</span> for Themselves"
+    subtitle="A selection of completed works across residential, commercial, industrial, and public sectors. Each project reflects our commitment to quality, safety, and on-time delivery."
+    ctaText="Start Your Project"
+    ctaLink="/contact"
+  />
+
+  <!-- Projects Grid -->
+  <section class="projects-section">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-eyebrow">Our Portfolio</p>
+        <h2 class="section-title">Selected <span>Completed Works</span></h2>
+        <p class="section-subtitle">From 48-unit housing estates to 22,000 m² logistics hubs — no project too large or too specialised.</p>
+      </div>
+
+      <div class="projects-grid">
+        {projects.map(p => (
+          <ProjectCard
+            title={p.title}
+            description={p.description}
+            category={p.category}
+            location={p.location}
+            year={p.year}
+            bgColor={p.bgColor}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="projects-cta bg-light">
+    <div class="container projects-cta__inner">
+      <div class="projects-cta__text">
+        <h2 class="projects-cta__title">Your Project Could Be Next</h2>
+        <p class="projects-cta__subtitle">
+          Whether you're planning a single home renovation or a large commercial development, we'd love to hear about it. Get in touch for a free, no-obligation consultation.
+        </p>
+      </div>
+      <div class="projects-cta__actions">
+        <a href="/contact" class="btn btn--primary">Get a Free Quote</a>
+        <a href="/services" class="btn btn--outline-dark">Our Services</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style lang="scss">
+  @use '../styles/variables' as *;
+
+  .projects-section {
+    padding-bottom: $spacing-2xl;
+  }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: $spacing-md;
+
+    @media (max-width: #{$bp-lg}) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: #{$bp-sm}) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  // ── CTA ────────────────────────────────────────────────────────────────────
+  .projects-cta {
+    &__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: $spacing-xl;
+      flex-wrap: wrap;
+
+      @media (max-width: #{$bp-md}) {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    &__title {
+      font-size: $font-size-3xl;
+      color: $color-dark;
+      margin-bottom: $spacing-xs;
+    }
+
+    &__subtitle {
+      color: $color-gray;
+      font-size: $font-size-base;
+      max-width: 520px;
+      line-height: 1.7;
+    }
+
+    &__actions {
+      display: flex;
+      gap: $spacing-sm;
+      flex-wrap: wrap;
+      flex-shrink: 0;
+    }
+  }
+</style>
